@@ -4,7 +4,6 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lisandro.birdwatching.model.BirdSize;
 import com.lisandro.birdwatching.model.Color;
 
@@ -21,7 +20,6 @@ public class ChanceDTO {
         this.month = month;
     }
 
-    @JsonProperty(value = "bird")
     public BirdDTO getBird() {
         return bird;
     }
@@ -30,8 +28,7 @@ public class ChanceDTO {
         this.bird = bird;
     }
 
-    @JsonProperty(value = "reserve")
-    public NaturalReserveDTO getReserveDTO() {
+    public NaturalReserveDTO getReserve() {
         return reserve;
     }
 
