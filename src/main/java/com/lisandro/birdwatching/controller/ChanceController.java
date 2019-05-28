@@ -1,11 +1,9 @@
 package com.lisandro.birdwatching.controller;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.lisandro.birdwatching.model.Chance;
+import com.lisandro.birdwatching.dto.ChanceDTO;
 import com.lisandro.birdwatching.service.ChanceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +23,11 @@ public class ChanceController {
     private ChanceService chanceService;
 
     @GetMapping
-    public List<Long> findByMonth(
+    public List<ChanceDTO> findByMonth(
             @RequestParam(name = "date", required = true)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate date) {
-        List<Chance> chances = chanceService.findByMonth(date.getMonth());
-        return chances.stream().map(Chance::getId).collect(Collectors.toList());
+        return chanceService.findByMonthDTO(date.getMonth());
     }
 
 }

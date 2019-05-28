@@ -1,5 +1,6 @@
 package com.lisandro.birdwatching.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -30,7 +31,7 @@ public class Bird extends BaseEntity {
     @CollectionTable(name = "bird_color", joinColumns = @JoinColumn(name = "bird_id"))
     @Column(name = "color")
     @Enumerated
-    private List<Color> colors;
+    private List<Color> colors = new ArrayList<>();
 
     public String getName() {
         return name;
