@@ -1,13 +1,13 @@
 package com.lisandro.birdwatching.dto;
 
 
-public class BirdDTO {
+public class Bird_TupleDTO {
     private Long id;
     private String name;
 
-    public BirdDTO() { }
+    public Bird_TupleDTO() { }
 
-    public BirdDTO(Long id, String name) {
+    public Bird_TupleDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }

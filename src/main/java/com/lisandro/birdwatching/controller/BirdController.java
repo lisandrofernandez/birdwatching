@@ -2,7 +2,7 @@ package com.lisandro.birdwatching.controller;
 
 import java.util.List;
 
-import com.lisandro.birdwatching.dto.BirdDTO;
+import com.lisandro.birdwatching.dto.Bird_TupleDTO;
 import com.lisandro.birdwatching.model.Bird;
 import com.lisandro.birdwatching.service.BirdService;
 
@@ -27,7 +27,7 @@ public class BirdController {
     }
 
     @GetMapping("/tuples")
-    public List<BirdDTO> allTuples() {
+    public List<Bird_TupleDTO> allTuples() {
         return birdService.findAllTuples();
     }
 
