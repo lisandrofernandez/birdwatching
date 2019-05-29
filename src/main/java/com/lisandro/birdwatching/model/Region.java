@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import com.lisandro.birdwatching.core.BaseEntity;
 
 @Entity
-@Table(name="region")
+@Table(name = "region")
 public class Region extends BaseEntity {
 
     @Column(name = "name")

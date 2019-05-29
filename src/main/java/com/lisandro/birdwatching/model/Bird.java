@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.lisandro.birdwatching.core.BaseEntity;
 
 @Entity
-@Table(name="bird")
+@Table(name = "bird")
 public class Bird extends BaseEntity {
 
     @Column(name = "name")

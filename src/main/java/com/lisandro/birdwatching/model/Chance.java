@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.lisandro.birdwatching.core.BaseEntity;
 
 @Entity
-@Table(name="chance")
+@Table(name = "chance")
 public class Chance extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

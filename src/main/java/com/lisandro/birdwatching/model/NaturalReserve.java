@@ -16,7 +16,7 @@ import com.lisandro.birdwatching.core.BaseEntity;
 import com.lisandro.birdwatching.core.BusinessException;
 
 @Entity
-@Table(name="natural_reserve")
+@Table(name = "natural_reserve")
 public class NaturalReserve extends BaseEntity {
 
     private static final int NAME_LENGTH = 150;
