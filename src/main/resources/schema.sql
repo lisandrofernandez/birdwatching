@@ -29,7 +29,7 @@ CREATE TABLE region (
 
 CREATE TABLE natural_reserve (
     id IDENTITY PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     region_id INT8 NOT NULL,
     version INT DEFAULT 0 NOT NULL,
     --creation_datetime DATETIME DEFAULT NOW() NOT NULL,
