@@ -4,6 +4,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lisandro.birdwatching.core.Assert;
 import com.lisandro.birdwatching.dto.ChanceDTO;
 import com.lisandro.birdwatching.model.Bird;
 import com.lisandro.birdwatching.model.Chance;
@@ -24,6 +25,7 @@ public class ChanceServiceImpl implements ChanceService {
     @Override
     @Transactional(readOnly = true)
     public List<ChanceDTO> findByMonthDTO(Month month) {
+        Assert.notNull(month, "Month must not be null");
         List<Chance> chances = chanceRepository.findByMonthAndProbabilityGreaterThanEqual(
                 month, ChanceService.MIN_PROBABILITY);
         List<ChanceDTO> chancesDTO = new ArrayList<>(chances.size());
