@@ -2,6 +2,7 @@ package com.lisandro.birdwatching.controller;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
+import java.net.URI;
 import java.util.List;
 
 import com.lisandro.birdwatching.core.ApiError;
@@ -32,12 +33,19 @@ public class NaturalReserveController {
     @Autowired
     private NaturalReserveService reserveService;
 
+    @GetMapping
+    public List<NaturalReserve_TupleDTO> allTuples() {
+        return reserveService.findAllTuples();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         NaturalReserveDTO reserveDTO = reserveService.findByIdDTO(id);
         if (reserveDTO == null) {
-            ApiError apiError = new ApiError(HttpStatus.NOT_FOUND,
-                    "Natural reserve not found", "There is no natural reserve with ID = " + id
+            ApiError apiError = new ApiError(
+                    HttpStatus.NOT_FOUND,
+                    "Natural reserve not found",
+                    "There is no natural reserve with ID = " + id
             );
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
@@ -64,12 +72,16 @@ public class NaturalReserveController {
         try {
             reserveService.deleteById(id);
         } catch (NaturalReserveNotFoundException e) {
-            apiError = new ApiError(HttpStatus.NOT_FOUND,
-                    "Natural reserve not found", "There is no natural reserve with ID = " + id
+            apiError = new ApiError(
+                    HttpStatus.NOT_FOUND,
+                    "Natural reserve not found",
+                    "There is no natural reserve with ID = " + id
             );
         } catch (Exception e) {
-            apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Internal server error", "There was an error while processing the request"
+            apiError = new ApiError(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error",
+                    "There was an error while processing the request"
             );
         }
         if (apiError != null) {
@@ -78,26 +90,25 @@ public class NaturalReserveController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/tuples")
-    public List<NaturalReserve_TupleDTO> allTuples() {
-        return reserveService.findAllTuples();
-    }
-
     private ResponseEntity<?> createOrUpdate(NaturalReserveDTO reserveDTO) {
         ApiError apiError = null;
         try {
             reserveDTO = reserveService.createorUpdateDTO(reserveDTO);
         } catch (BusinessException e) {
-            apiError = new ApiError(HttpStatus.BAD_REQUEST,"Bad Request", e.getMessage());
+            apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (Exception e) {
-            apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Internal server error", "There was an error while processing the request"
+            apiError = new ApiError(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error",
+                    "There was an error while processing the request"
             );
         }
         if (apiError != null) {
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
-        return ResponseEntity.created(linkTo(methodOn(NaturalReserveController.class).findById(reserveDTO.getId())).toUri()).body(reserveDTO);
+        URI location = linkTo(methodOn(NaturalReserveController.class).findById(reserveDTO.getId()))
+                .toUri();
+        return ResponseEntity.created(location).body(reserveDTO);
     }
 
 }
