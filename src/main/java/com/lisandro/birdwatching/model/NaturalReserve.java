@@ -28,7 +28,7 @@ public class NaturalReserve extends BaseEntity {
         this.name = name;
     }
 
-    public Region gerRegion() {
+    public Region getRegion() {
         return region;
     }
 
