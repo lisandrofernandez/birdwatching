@@ -10,7 +10,6 @@ import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
 import com.lisandro.birdwatching.model.NaturalReserve;
 import com.lisandro.birdwatching.model.Region;
 import com.lisandro.birdwatching.repository.NaturalReserveRepository;
-import com.lisandro.birdwatching.repository.RegionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
     @Autowired
     private NaturalReserveRepository naturalReserveRepository;
     @Autowired
-    private RegionRepository regionRepository;
+    private RegionService regionService;
 
     @Override
     @Transactional(readOnly = true)
@@ -63,7 +62,7 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
 
     @Override
     public NaturalReserve save(NaturalReserve reserve) {
-        Assert.notNull(reserve, "Natural Reserve must not be null");
+        Assert.notNull(reserve, "Natural reserve must not be null");
         reserve.normalizeAndValidate();
         return naturalReserveRepository.save(reserve);
     }
@@ -88,7 +87,7 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         reserve.setName(reserveDTO.getName());
         Long regionId = reserveDTO.getRegionId();
         BusinessException.notNull(regionId, "Region ID must not be null");
-        Region region = regionRepository.findById(regionId).orElse(null);
+        Region region = regionService.findById(regionId);
         BusinessException.notNull(region,"There is no region with ID = " + regionId);
         reserve.setRegion(region);
         return reserve;
