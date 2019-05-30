@@ -15,9 +15,10 @@ public interface ChanceRepository extends JpaRepository<Chance, Long> {
            "FROM Chance c " +
            "LEFT JOIN FETCH c.bird b " +
            "LEFT JOIN FETCH b.colors " +
-           "LEFT JOIN FETCH c.reserve " +
+           "LEFT JOIN FETCH c.reserve r " +
            "WHERE c.probability >= :probability " +
-           "AND c.month = :month")
+           "AND c.month = :month " +
+           "ORDER BY r.name, c.probability")
     List<Chance> findByMonthAndProbabilityGreaterThanEqual(
             @Param("month") Month month, @Param("probability") double probability
     );
