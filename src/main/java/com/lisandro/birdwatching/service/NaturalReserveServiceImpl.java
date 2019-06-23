@@ -68,7 +68,7 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
     }
 
     @Override
-    public NaturalReserveDTO createorUpdateDTO(NaturalReserveDTO reserveDTO) {
+    public NaturalReserveDTO createOrUpdateDTO(NaturalReserveDTO reserveDTO) {
         Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
         return toDTO(save(fromDTO(reserveDTO)));
     }

@@ -11,6 +11,6 @@ public interface NaturalReserveService {
     NaturalReserveDTO findByIdDTO(Long id);
     List<NaturalReserve_TupleDTO> findAllTuples();
     NaturalReserve save(NaturalReserve reserve);
-    NaturalReserveDTO createorUpdateDTO(NaturalReserveDTO reserveDTO);
+    NaturalReserveDTO createOrUpdateDTO(NaturalReserveDTO reserveDTO);
     void deleteById(Long id);
 }

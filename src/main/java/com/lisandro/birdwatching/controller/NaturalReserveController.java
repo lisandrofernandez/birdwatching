@@ -93,7 +93,7 @@ public class NaturalReserveController {
     private ResponseEntity<?> createOrUpdate(NaturalReserveDTO reserveDTO) {
         ApiError apiError = null;
         try {
-            reserveDTO = reserveService.createorUpdateDTO(reserveDTO);
+            reserveDTO = reserveService.createOrUpdateDTO(reserveDTO);
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (Exception e) {
