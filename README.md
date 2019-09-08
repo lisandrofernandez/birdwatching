@@ -17,10 +17,10 @@ A birdwatching RESTful API.
         + Password: (empty).
 
 
-## Requeriments
+## Requirements
 
 * JDK 1.8 or superior.
-* Maven (optional)
+* Maven (optional).
 
 
 ## Compile and run
@@ -120,7 +120,7 @@ public class Chance extends BaseEntity {
 }
 ```
 
-* `Chance` is an entity which represents the probability of seen a bird in a
+* `Chance` is an entity which represents the probability of seeing a bird in a
   natural reserve depending on the month.
 
 ### Region
@@ -149,13 +149,13 @@ Examples can be found in `doc/examples.sh`.
 
 ### Natural reserves
 
-| Method   | URL                          | Description                   |
-| ---------|------------------------------|-------------------------------|
-| `GET`    | /api/v1/reserves             | Retrieve all natural reserves |
-| `GET`    | /api/v1/reserves/{id}        | Retrieve a natural reserves   |
-| `POST`   | /api/v1/reserves             | Create a natural reserve      |
-| `PUT`    | /api/v1/reserves/{id}        | Update a natural reserve      |
-| `DELETE` | /api/v1/reserves/{id}        | Delete a natural reserve      |
+| Method   | URL                   | Description                   |
+| ---------|-----------------------|-------------------------------|
+| `GET`    | /api/v1/reserves      | Retrieve all natural reserves |
+| `GET`    | /api/v1/reserves/{id} | Retrieve a natural reserves   |
+| `POST`   | /api/v1/reserves      | Create a natural reserve      |
+| `PUT`    | /api/v1/reserves/{id} | Update a natural reserve      |
+| `DELETE` | /api/v1/reserves/{id} | Delete a natural reserve      |
 
 ### Chances
 
