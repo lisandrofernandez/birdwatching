@@ -143,9 +143,9 @@ Examples can be found in `doc/examples.sh`.
 
 ### Birds
 
-| Method | URL          | Description        |
-| -------|--------------|--------------------|
-| `GET`  | /api/v1/bird | Retrieve all birds |
+| Method | URL           | Description        |
+| -------|---------------|--------------------|
+| `GET`  | /api/v1/birds | Retrieve all birds |
 
 ### Natural reserves
 
