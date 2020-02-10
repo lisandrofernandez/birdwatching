@@ -20,12 +20,6 @@ public class BirdServiceImpl implements BirdService {
 
     @Override
     @Transactional(readOnly = true)
-    public Bird findById(Long id) {
-        return birdRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<Bird_TupleDTO> findAllTuples() {
         List<Bird> birds = birdRepository.findAll();
         List<Bird_TupleDTO> dtos = new ArrayList<>(birds.size());
