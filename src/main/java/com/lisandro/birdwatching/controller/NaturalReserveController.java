@@ -12,7 +12,6 @@ import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
 import com.lisandro.birdwatching.service.NaturalReserveNotFoundException;
 import com.lisandro.birdwatching.service.NaturalReserveService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,8 +29,11 @@ public class NaturalReserveController {
 
     public static final String BASE_URL = "/api/v1/reserves";
 
-    @Autowired
-    private NaturalReserveService reserveService;
+    private final NaturalReserveService reserveService;
+
+    public NaturalReserveController(NaturalReserveService reserveService) {
+        this.reserveService = reserveService;
+    }
 
     @GetMapping
     public List<NaturalReserve_TupleDTO> allTuples() {

@@ -12,7 +12,6 @@ import com.lisandro.birdwatching.model.Region;
 import com.lisandro.birdwatching.repository.NaturalReserveRepository;
 import com.lisandro.birdwatching.repository.RegionRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,10 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class NaturalReserveServiceImpl implements NaturalReserveService {
 
-    @Autowired
-    private NaturalReserveRepository naturalReserveRepository;
-    @Autowired
-    private RegionRepository regionRepository;
+    private final NaturalReserveRepository naturalReserveRepository;
+    private final RegionRepository regionRepository;
+
+    public NaturalReserveServiceImpl(NaturalReserveRepository naturalReserveRepository,
+                                     RegionRepository regionRepository) {
+        this.naturalReserveRepository = naturalReserveRepository;
+        this.regionRepository = regionRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)

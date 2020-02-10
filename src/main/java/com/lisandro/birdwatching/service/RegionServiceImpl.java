@@ -7,7 +7,6 @@ import com.lisandro.birdwatching.dto.RegionDTO;
 import com.lisandro.birdwatching.model.Region;
 import com.lisandro.birdwatching.repository.RegionRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class RegionServiceImpl implements RegionService {
 
-    @Autowired
     private RegionRepository regionRepository;
+
+    public RegionServiceImpl(RegionRepository regionRepository) {
+        this.regionRepository = regionRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)

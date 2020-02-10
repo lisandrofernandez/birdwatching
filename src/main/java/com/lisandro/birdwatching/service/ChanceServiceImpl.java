@@ -11,7 +11,6 @@ import com.lisandro.birdwatching.model.Chance;
 import com.lisandro.birdwatching.model.NaturalReserve;
 import com.lisandro.birdwatching.repository.ChanceRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ChanceServiceImpl implements ChanceService {
 
-    @Autowired
-    private ChanceRepository chanceRepository;
+    private final ChanceRepository chanceRepository;
+
+    public ChanceServiceImpl (ChanceRepository chanceRepository) {
+        this.chanceRepository = chanceRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)

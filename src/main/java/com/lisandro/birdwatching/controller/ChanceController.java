@@ -6,7 +6,6 @@ import java.util.List;
 import com.lisandro.birdwatching.dto.ChanceDTO;
 import com.lisandro.birdwatching.service.ChanceService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +18,11 @@ public class ChanceController {
 
     public static final String BASE_URL = "/api/v1/chances";
 
-    @Autowired
-    private ChanceService chanceService;
+    private final ChanceService chanceService;
+
+    public ChanceController (ChanceService chanceService) {
+        this.chanceService = chanceService;
+    }
 
     @GetMapping
     public List<ChanceDTO> findByMonth(
