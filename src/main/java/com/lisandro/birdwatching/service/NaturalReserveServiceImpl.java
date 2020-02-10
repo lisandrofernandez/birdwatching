@@ -47,23 +47,36 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
     }
 
     @Override
+    @Transactional
+    public NaturalReserveDTO createDTO(NaturalReserveDTO reserveDTO) {
+        Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
+        reserveDTO.setId(null); // omit ID to avoid an unwanted update
+        NaturalReserve reserve = fromDTO(reserveDTO);
+        reserve.normalizeAndValidate();
+        return toDTO(naturalReserveRepository.save(reserve));
+    }
+
+    @Override
+    @Transactional
+    public NaturalReserveDTO updateDTO(NaturalReserveDTO reserveDTO) {
+        Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
+        Long id = reserveDTO.getId();
+        BusinessException.notNull(id, "Natural reserve ID must not be null");
+        NaturalReserve reserve = naturalReserveRepository.findById(id).orElseThrow(() ->
+                new NaturalReserveNotFoundException("There is no natural reserve with ID = " + id)
+        );
+        fromDTO(reserveDTO, reserve);
+        reserve.normalizeAndValidate();
+        return toDTO(reserve);
+    }
+
+    @Override
     public void deleteById(Long id) {
         Assert.notNull(id, "Natural reserve ID must not be null");
         NaturalReserve reserve = naturalReserveRepository.findById(id).orElseThrow(() ->
                 new NaturalReserveNotFoundException("There is no natural reserve with ID = " + id)
         );
         naturalReserveRepository.delete(reserve);
-    }
-
-    @Override
-    public NaturalReserveDTO createOrUpdateDTO(NaturalReserveDTO reserveDTO) {
-        Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
-        return toDTO(save(fromDTO(reserveDTO)));
-    }
-
-    private NaturalReserve save(NaturalReserve reserve) {
-        reserve.normalizeAndValidate();
-        return naturalReserveRepository.save(reserve);
     }
 
     private NaturalReserveDTO toDTO(NaturalReserve reserve) {
@@ -74,8 +87,7 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         return reserveDTO;
     }
 
-    private NaturalReserve fromDTO(NaturalReserveDTO reserveDTO) {
-        NaturalReserve reserve = new NaturalReserve();
+    private void fromDTO(NaturalReserveDTO reserveDTO, NaturalReserve reserve) {
         reserve.setId(reserveDTO.getId());
         reserve.setName(reserveDTO.getName());
         Long regionId = reserveDTO.getRegionId();
@@ -84,6 +96,11 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
                 () -> new BusinessException("There is no region with ID = " + regionId)
         );
         reserve.setRegion(region);
+    }
+
+    private NaturalReserve fromDTO(NaturalReserveDTO reserveDTO) {
+        NaturalReserve reserve = new NaturalReserve();
+        fromDTO(reserveDTO, reserve);
         return reserve;
     }
 

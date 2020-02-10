@@ -56,7 +56,24 @@ public class NaturalReserveController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody NaturalReserveDTO reserveDTO) {
-        return createOrUpdate(reserveDTO);
+        ApiError apiError = null;
+        try {
+            reserveDTO = reserveService.createDTO(reserveDTO);
+        } catch (BusinessException e) {
+            apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
+        } catch (Exception e) {
+            apiError = new ApiError(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error",
+                    "There was an error while processing the request"
+            );
+        }
+        if (apiError != null) {
+            return ResponseEntity.status(apiError.getStatus()).body(apiError);
+        }
+        URI location = linkTo(methodOn(NaturalReserveController.class).findById(reserveDTO.getId()))
+                .toUri();
+        return ResponseEntity.created(location).body(reserveDTO);
     }
 
     @PutMapping("/{id}")
@@ -65,7 +82,28 @@ public class NaturalReserveController {
             @RequestBody NaturalReserveDTO reserveDTO
     ) {
         reserveDTO.setId(id); // use ID in URL
-        return createOrUpdate(reserveDTO);
+        ApiError apiError = null;
+        try {
+            reserveDTO = reserveService.updateDTO(reserveDTO);
+        } catch(NaturalReserveNotFoundException e) {
+            apiError = new ApiError(
+                    HttpStatus.NOT_FOUND,
+                    "Natural reserve not found",
+                    "There is no natural reserve with ID = " + id
+            );
+        } catch (BusinessException e) {
+            apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
+        } catch (Exception e) {
+            apiError = new ApiError(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error",
+                    "There was an error while processing the request"
+            );
+        }
+        if (apiError != null) {
+            return ResponseEntity.status(apiError.getStatus()).body(apiError);
+        }
+        return ResponseEntity.ok(reserveDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -90,27 +128,6 @@ public class NaturalReserveController {
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
         return ResponseEntity.noContent().build();
-    }
-
-    private ResponseEntity<?> createOrUpdate(NaturalReserveDTO reserveDTO) {
-        ApiError apiError = null;
-        try {
-            reserveDTO = reserveService.createOrUpdateDTO(reserveDTO);
-        } catch (BusinessException e) {
-            apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
-        } catch (Exception e) {
-            apiError = new ApiError(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Internal server error",
-                    "There was an error while processing the request"
-            );
-        }
-        if (apiError != null) {
-            return ResponseEntity.status(apiError.getStatus()).body(apiError);
-        }
-        URI location = linkTo(methodOn(NaturalReserveController.class).findById(reserveDTO.getId()))
-                .toUri();
-        return ResponseEntity.created(location).body(reserveDTO);
     }
 
 }
