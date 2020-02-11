@@ -12,6 +12,8 @@ import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
 import com.lisandro.birdwatching.service.NaturalReserveNotFoundException;
 import com.lisandro.birdwatching.service.NaturalReserveService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class NaturalReserveController {
 
     public static final String BASE_URL = "/api/v1/reserves";
+
+    private static final Logger log = LoggerFactory.getLogger(NaturalReserveController.class);
 
     private final NaturalReserveService reserveService;
 
@@ -62,6 +66,7 @@ public class NaturalReserveController {
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (Exception e) {
+            log.error("Unable to create a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error",
@@ -94,6 +99,7 @@ public class NaturalReserveController {
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (Exception e) {
+            log.error("Unable to update a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error",
@@ -118,6 +124,7 @@ public class NaturalReserveController {
                     "There is no natural reserve with ID = " + id
             );
         } catch (Exception e) {
+            log.error("Unable to delete a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error",
