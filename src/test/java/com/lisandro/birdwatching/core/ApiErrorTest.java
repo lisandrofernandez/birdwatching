@@ -21,37 +21,30 @@
  */
 package com.lisandro.birdwatching.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-public class ApiError {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    private HttpStatus status;
-    private String message;
-    private List<String> errors;
+class ApiErrorTest {
+    private static final String A_TEST_MESSAGE = "Test message";
+    private static final String A_TEST_ERROR = "Test error";
 
-    public ApiError(HttpStatus status, String message, String... errors) {
-        Assert.notNull(status, "HTTP status must not be null");
-        Assert.notNull(errors, "Error list must not be null");
-
-        this.status = status;
-        this.message = message;
-        this.errors = new ArrayList<>(Arrays.asList(errors));
+    @Test
+    void constructNullHttpStatusShouldThrowIllegalArgumentExceptionTest() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new ApiError(null, A_TEST_MESSAGE, A_TEST_ERROR)
+        );
     }
 
-    public HttpStatus getStatus() {
-        return status;
-    }
+    @Test
+    void errorListShouldBeMutableTest() {
+        // when
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, A_TEST_MESSAGE);
 
-    public String getMessage() {
-        return message;
+        // then
+        assertDoesNotThrow(() -> apiError.getErrors().add(A_TEST_ERROR));
     }
-
-    public List<String> getErrors() {
-        return errors;
-    }
-
 }
