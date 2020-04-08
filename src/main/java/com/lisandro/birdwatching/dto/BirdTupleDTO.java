@@ -28,13 +28,13 @@ package com.lisandro.birdwatching.dto;
  *
  * @author Lisandro Fernandez
  */
-public class Bird_TupleDTO {
+public class BirdTupleDTO {
     private Long id;
     private String name;
 
-    public Bird_TupleDTO() { }
+    public BirdTupleDTO() { }
 
-    public Bird_TupleDTO(Long id, String name) {
+    public BirdTupleDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }

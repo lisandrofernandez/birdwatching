@@ -24,7 +24,7 @@ package com.lisandro.birdwatching.controller;
 
 import java.util.List;
 
-import com.lisandro.birdwatching.dto.Bird_TupleDTO;
+import com.lisandro.birdwatching.dto.BirdTupleDTO;
 import com.lisandro.birdwatching.service.BirdService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +59,7 @@ public class BirdController {
      * @return all birds data
      */
     @GetMapping
-    public List<Bird_TupleDTO> allTuples() {
+    public List<BirdTupleDTO> allTuples() {
         return birdService.findAllTuples();
     }
 

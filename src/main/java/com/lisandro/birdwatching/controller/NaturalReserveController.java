@@ -30,7 +30,7 @@ import java.util.List;
 import com.lisandro.birdwatching.core.ApiError;
 import com.lisandro.birdwatching.core.BusinessException;
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
-import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
+import com.lisandro.birdwatching.dto.NaturalReserveTupleDTO;
 import com.lisandro.birdwatching.service.NaturalReserveNotFoundException;
 import com.lisandro.birdwatching.service.NaturalReserveService;
 
@@ -77,7 +77,7 @@ public class NaturalReserveController {
      * @return all natural reserves data
      */
     @GetMapping
-    public List<NaturalReserve_TupleDTO> allTuples() {
+    public List<NaturalReserveTupleDTO> allTuples() {
         return reserveService.findAllTuples();
     }
 

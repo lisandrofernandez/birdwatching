@@ -28,7 +28,7 @@ import java.util.List;
 import com.lisandro.birdwatching.core.Assert;
 import com.lisandro.birdwatching.core.BusinessException;
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
-import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
+import com.lisandro.birdwatching.dto.NaturalReserveTupleDTO;
 import com.lisandro.birdwatching.model.NaturalReserve;
 import com.lisandro.birdwatching.model.Region;
 import com.lisandro.birdwatching.repository.NaturalReserveRepository;
@@ -78,11 +78,11 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<NaturalReserve_TupleDTO> findAllTuples() {
+    public List<NaturalReserveTupleDTO> findAllTuples() {
         List<NaturalReserve> reserves = naturalReserveRepository.findAll();
-        List<NaturalReserve_TupleDTO> dtos = new ArrayList<>(reserves.size());
+        List<NaturalReserveTupleDTO> dtos = new ArrayList<>(reserves.size());
         for (NaturalReserve reserve : reserves) {
-            dtos.add(new NaturalReserve_TupleDTO(reserve.getId(), reserve.getName()));
+            dtos.add(new NaturalReserveTupleDTO(reserve.getId(), reserve.getName()));
         }
         return dtos;
     }

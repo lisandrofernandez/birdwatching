@@ -24,7 +24,7 @@ package com.lisandro.birdwatching.service;
 
 import java.util.List;
 
-import com.lisandro.birdwatching.dto.Bird_TupleDTO;
+import com.lisandro.birdwatching.dto.BirdTupleDTO;
 
 /**
  * Service interface which defines operations over birds.
@@ -38,5 +38,5 @@ public interface BirdService {
      *
      * @return all birds data
      */
-    List<Bird_TupleDTO> findAllTuples();
+    List<BirdTupleDTO> findAllTuples();
 }

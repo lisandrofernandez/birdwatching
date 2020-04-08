@@ -25,7 +25,7 @@ package com.lisandro.birdwatching.service;
 import java.util.List;
 
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
-import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
+import com.lisandro.birdwatching.dto.NaturalReserveTupleDTO;
 
 /**
  * Service interface which defines operations over natural reserves.
@@ -48,7 +48,7 @@ public interface NaturalReserveService {
      *
      * @return all natural reserves data
      */
-    List<NaturalReserve_TupleDTO> findAllTuples();
+    List<NaturalReserveTupleDTO> findAllTuples();
 
     /**
      * Creates a natural reserve, requested by an HTTP POST request.

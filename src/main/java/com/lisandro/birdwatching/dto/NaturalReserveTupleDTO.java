@@ -28,13 +28,13 @@ package com.lisandro.birdwatching.dto;
  *
  * @author Lisandro Fernandez
  */
-public class NaturalReserve_TupleDTO {
+public class NaturalReserveTupleDTO {
     private Long id;
     private String name;
 
-    public NaturalReserve_TupleDTO() { }
+    public NaturalReserveTupleDTO() { }
 
-    public NaturalReserve_TupleDTO(Long id, String name) {
+    public NaturalReserveTupleDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -54,5 +54,4 @@ public class NaturalReserve_TupleDTO {
     public void setName(String name) {
         this.name = name;
     }
-
 }

@@ -43,7 +43,7 @@ import java.util.Objects;
 
 import com.lisandro.birdwatching.core.BusinessException;
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
-import com.lisandro.birdwatching.dto.NaturalReserve_TupleDTO;
+import com.lisandro.birdwatching.dto.NaturalReserveTupleDTO;
 import com.lisandro.birdwatching.service.NaturalReserveNotFoundException;
 import com.lisandro.birdwatching.service.NaturalReserveService;
 
@@ -72,10 +72,10 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void getAllTuplesWhenElements() throws Exception {
         // given
-        List<NaturalReserve_TupleDTO> tuples = Arrays.asList(
-                new NaturalReserve_TupleDTO(1L, "Natural Reserve #1"),
-                new NaturalReserve_TupleDTO(2L, "Natural Reserve #2"),
-                new NaturalReserve_TupleDTO(3L, "Natural Reserve #3")
+        List<NaturalReserveTupleDTO> tuples = Arrays.asList(
+                new NaturalReserveTupleDTO(1L, "Natural Reserve #1"),
+                new NaturalReserveTupleDTO(2L, "Natural Reserve #2"),
+                new NaturalReserveTupleDTO(3L, "Natural Reserve #3")
         );
         given(reserveService.findAllTuples()).willReturn(tuples);
 

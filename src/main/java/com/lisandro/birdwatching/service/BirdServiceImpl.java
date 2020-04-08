@@ -25,7 +25,7 @@ package com.lisandro.birdwatching.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lisandro.birdwatching.dto.Bird_TupleDTO;
+import com.lisandro.birdwatching.dto.BirdTupleDTO;
 import com.lisandro.birdwatching.model.Bird;
 import com.lisandro.birdwatching.repository.BirdRepository;
 
@@ -58,11 +58,11 @@ public class BirdServiceImpl implements BirdService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Bird_TupleDTO> findAllTuples() {
+    public List<BirdTupleDTO> findAllTuples() {
         List<Bird> birds = birdRepository.findAll();
-        List<Bird_TupleDTO> dtos = new ArrayList<>(birds.size());
+        List<BirdTupleDTO> dtos = new ArrayList<>(birds.size());
         for (Bird bird : birds) {
-            dtos.add(new Bird_TupleDTO(bird.getId(), bird.getName()));
+            dtos.add(new BirdTupleDTO(bird.getId(), bird.getName()));
         }
         return dtos;
     }

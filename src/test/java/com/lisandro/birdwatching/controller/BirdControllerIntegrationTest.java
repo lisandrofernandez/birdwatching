@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.Collections;
 
-import com.lisandro.birdwatching.dto.Bird_TupleDTO;
+import com.lisandro.birdwatching.dto.BirdTupleDTO;
 import com.lisandro.birdwatching.service.BirdService;
 
 import org.junit.jupiter.api.Test;
@@ -60,7 +60,7 @@ public class BirdControllerIntegrationTest {
     void getAllWhenElements() throws Exception {
         // given
         given(birdService.findAllTuples()).willReturn(
-                Arrays.asList(new Bird_TupleDTO(1L, "Bird #1"), new Bird_TupleDTO(2L, "Bird #2"))
+                Arrays.asList(new BirdTupleDTO(1L, "Bird #1"), new BirdTupleDTO(2L, "Bird #2"))
         );
 
         // when
