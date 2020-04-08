@@ -13,7 +13,7 @@ A birdwatching RESTful API.
       down.
     - Connection:
         + URL: `jdbc:h2:tcp://localhost:9090/mem:birdwatching`.
-        + Username: `su`.
+        + Username: `sa`.
         + Password: (empty).
 
 
