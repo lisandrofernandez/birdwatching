@@ -77,14 +77,14 @@ public class ChanceServiceImpl implements ChanceService {
         ChanceDTO chanceDTO = new ChanceDTO();
         chanceDTO.setMonth(chance.getMonth());
         Bird bird = chance.getBird();
-        ChanceDTO.BirdDTO birdDTO = chanceDTO.new BirdDTO();
+        ChanceDTO.BirdDTO birdDTO = new ChanceDTO.BirdDTO();
         birdDTO.setName(bird.getName());
         birdDTO.setSize(bird.getSize());
         birdDTO.setPhotoURL(bird.getPhotoURL());
         birdDTO.setColors(bird.getColors());
         chanceDTO.setBird(birdDTO);
         NaturalReserve reserve = chance.getReserve();
-        ChanceDTO.NaturalReserveDTO reserveDTO = chanceDTO.new NaturalReserveDTO();
+        ChanceDTO.NaturalReserveDTO reserveDTO = new ChanceDTO.NaturalReserveDTO();
         reserveDTO.setName(reserve.getName());
         chanceDTO.setReserve(reserveDTO);
         return chanceDTO;

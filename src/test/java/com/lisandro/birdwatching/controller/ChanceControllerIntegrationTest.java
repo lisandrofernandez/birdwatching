@@ -117,28 +117,28 @@ public class ChanceControllerIntegrationTest {
         // bird 1
         ChanceDTO chanceDTO = new ChanceDTO();
         chanceDTO.setMonth(Month.JANUARY);
-        ChanceDTO.BirdDTO birdDTO = chanceDTO.new BirdDTO();
+        ChanceDTO.BirdDTO birdDTO = new ChanceDTO.BirdDTO();
         birdDTO.setName("Bird #1");
         birdDTO.setSize(BirdSize.SMALL);
         birdDTO.setPhotoURL("http://example.org/bird/images/1.jpg");
         birdDTO.getColors().add(Color.BLACK);
         birdDTO.getColors().add(Color.WHITE);
         chanceDTO.setBird(birdDTO);
-        ChanceDTO.NaturalReserveDTO reserveDTO = chanceDTO.new NaturalReserveDTO();
+        ChanceDTO.NaturalReserveDTO reserveDTO = new ChanceDTO.NaturalReserveDTO();
         reserveDTO.setName("Natural Reserve #1");
         chanceDTO.setReserve(reserveDTO);
         chances.add(chanceDTO);
         // bird 2
         chanceDTO = new ChanceDTO();
         chanceDTO.setMonth(Month.JANUARY);
-        birdDTO = chanceDTO.new BirdDTO();
+        birdDTO = new ChanceDTO.BirdDTO();
         birdDTO.setName("Bird #2");
         birdDTO.setSize(BirdSize.BIG);
         birdDTO.setPhotoURL("http://example.org/bird/images/2.jpg");
         birdDTO.getColors().add(Color.BLUE);
         birdDTO.getColors().add(Color.YELLOW);
         chanceDTO.setBird(birdDTO);
-        reserveDTO = chanceDTO.new NaturalReserveDTO();
+        reserveDTO = new ChanceDTO.NaturalReserveDTO();
         reserveDTO.setName("Natural Reserve #2");
         chanceDTO.setReserve(reserveDTO);
         chances.add(chanceDTO);

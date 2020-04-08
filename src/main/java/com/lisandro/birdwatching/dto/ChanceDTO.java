@@ -64,7 +64,7 @@ public class ChanceDTO {
         this.reserve = reserve;
     }
 
-    public class BirdDTO {
+    public static class BirdDTO {
         private String name;
         private BirdSize size;
         private String photoURL;
@@ -103,7 +103,7 @@ public class ChanceDTO {
         }
     }
 
-    public class NaturalReserveDTO {
+    public static class NaturalReserveDTO {
         private String name;
 
         public String getName() {
