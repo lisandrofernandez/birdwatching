@@ -181,4 +181,4 @@ files are:
 
 ## Copyright
 
-Copyright &copy; 2019 [Lisandro Fernandez](https://github.com/lisandrofernandez).
+Copyright &copy; 2020 [Lisandro Fernandez](https://github.com/lisandrofernandez).
