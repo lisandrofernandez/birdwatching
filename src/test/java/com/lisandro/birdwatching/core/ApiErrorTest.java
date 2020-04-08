@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.core;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,11 @@ import org.springframework.http.HttpStatus;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Unit tests of {@link ApiError}.
+ *
+ * @author Lisandro Fernandez
+ */
 class ApiErrorTest {
     private static final String A_TEST_MESSAGE = "Test message";
     private static final String A_TEST_ERROR = "Test error";

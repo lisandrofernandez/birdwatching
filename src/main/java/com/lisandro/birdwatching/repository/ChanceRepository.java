@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.repository;
 
 import java.time.Month;
@@ -30,6 +31,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+/**
+ * {@link JpaRepository} for {@link Chance} entity.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface ChanceRepository extends JpaRepository<Chance, Long> {
     // join all eagerly
     @Query("SELECT DISTINCT c " +

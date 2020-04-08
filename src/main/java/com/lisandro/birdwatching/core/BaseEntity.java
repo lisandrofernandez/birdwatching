@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.core;
 
 import javax.persistence.Column;
@@ -28,6 +29,21 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+/**
+ * Abstract class which serves as a base class for entities stored to and
+ * retrieved from a relational database through a JPA provider.<p>
+ *
+ * An entity which extends from {@link BaseEntity} inherits:
+ * <ul>
+ *     <li>an unique identifier {@link #id}, a {@link Long} assigned by a
+ *         database once the object is stored</li>
+ *     <li>a version number {@link #version}, an {@code int} assigned by a
+ *         database once the object is stored and incremented on every
+ *         update</li>
+ * </ul>
+ *
+ * @author Lisandro Fernandez
+ */
 @MappedSuperclass
 public abstract class BaseEntity {
 

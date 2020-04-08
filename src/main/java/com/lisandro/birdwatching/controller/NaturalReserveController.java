@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -46,6 +47,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Natural reserve rest controller.
+ *
+ * @author Lisandro Fernandez
+ */
 @RestController
 @RequestMapping(NaturalReserveController.BASE_URL)
 public class NaturalReserveController {
@@ -56,15 +62,32 @@ public class NaturalReserveController {
 
     private final NaturalReserveService reserveService;
 
+    /**
+     * Constructs a {@link NaturalReserveController}.
+     *
+     * @param reserveService  used by the controller
+     */
     public NaturalReserveController(NaturalReserveService reserveService) {
         this.reserveService = reserveService;
     }
 
+    /**
+     * Returns of all natural reserves data, requested by an HTTP GET request.
+     *
+     * @return all natural reserves data
+     */
     @GetMapping
     public List<NaturalReserve_TupleDTO> allTuples() {
         return reserveService.findAllTuples();
     }
 
+    /**
+     * Returns a natural reserve data given its ID, requested by an HTTP GET
+     * request.
+     *
+     * @param id  ID of the natural reserve
+     * @return the natural reserve data, or an {@literal ApiError} if not found
+     */
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         NaturalReserveDTO reserveDTO = reserveService.findByIdDTO(id);
@@ -79,6 +102,13 @@ public class NaturalReserveController {
         return ResponseEntity.ok(reserveDTO);
     }
 
+    /**
+     * Creates a natural reserve, requested by an HTTP POST request.
+     *
+     * @param reserveDTO  the natural reserve data
+     * @return the created natural reserve data, or an {@link ApiError} if an
+     *         error occurs
+     */
     @PostMapping
     public ResponseEntity<?> create(@RequestBody NaturalReserveDTO reserveDTO) {
         ApiError apiError = null;
@@ -102,11 +132,17 @@ public class NaturalReserveController {
         return ResponseEntity.created(location).body(reserveDTO);
     }
 
+    /**
+     * Updates a natural reserve, requested by an HTTP PUT request.
+     *
+     * @param id  ID of the natural reserve
+     * @param reserveDTO  the natural reserve data to update
+     * @return the updated natural reserve data, or an {@link ApiError} if an
+     *         error occurs
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(
-            @PathVariable Long id,
-            @RequestBody NaturalReserveDTO reserveDTO
-    ) {
+    public ResponseEntity<?> update(@PathVariable Long id,
+                                    @RequestBody NaturalReserveDTO reserveDTO) {
         reserveDTO.setId(id); // use ID in URL
         ApiError apiError = null;
         try {
@@ -133,6 +169,12 @@ public class NaturalReserveController {
         return ResponseEntity.ok(reserveDTO);
     }
 
+    /**
+     * Deletes a natural reserve, requested by an HTTP DELETE request.
+     *
+     * @param id  ID of the natural reserve
+     * @return no content if deleted, or an {@link ApiError} if an error occurs
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         ApiError apiError = null;

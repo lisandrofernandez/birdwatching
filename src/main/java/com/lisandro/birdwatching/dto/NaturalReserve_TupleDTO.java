@@ -19,8 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.dto;
 
+/**
+ * A DTO object used as input and output in service layer classes and
+ * obviously, by its clients.
+ *
+ * @author Lisandro Fernandez
+ */
 public class NaturalReserve_TupleDTO {
     private Long id;
     private String name;

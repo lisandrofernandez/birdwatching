@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
 import java.util.ArrayList;
@@ -35,6 +36,13 @@ import javax.persistence.Table;
 
 import com.lisandro.birdwatching.core.BaseEntity;
 
+/**
+ * An entity class which represents a bird.<p>
+ *
+ * This class extends from {@link BaseEntity}.
+ *
+ * @author Lisandro Fernandez
+ */
 @Entity
 @Table(name = "bird")
 public class Bird extends BaseEntity {

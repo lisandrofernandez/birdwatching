@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.util.ArrayList;
@@ -36,6 +37,11 @@ import com.lisandro.birdwatching.repository.RegionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * {@link NaturalReserveService} implementation.
+ *
+ * @author Lisandro Fernandez
+ */
 @Service
 @Transactional
 public class NaturalReserveServiceImpl implements NaturalReserveService {
@@ -43,12 +49,22 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
     private final NaturalReserveRepository naturalReserveRepository;
     private final RegionRepository regionRepository;
 
+    /**
+     * Constructs a {@link NaturalReserveServiceImpl}.
+     *
+     * @param naturalReserveRepository  used by the service
+     * @param regionRepository  used by the service
+     */
     public NaturalReserveServiceImpl(NaturalReserveRepository naturalReserveRepository,
                                      RegionRepository regionRepository) {
         this.naturalReserveRepository = naturalReserveRepository;
         this.regionRepository = regionRepository;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see NaturalReserveService#findByIdDTO(Long)
+     */
     @Override
     @Transactional(readOnly = true)
     public NaturalReserveDTO findByIdDTO(Long id) {
@@ -56,6 +72,10 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         return naturalReserveRepository.findById(id).map(this::toDTO).orElse(null);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see NaturalReserveService#findAllTuples()
+     */
     @Override
     @Transactional(readOnly = true)
     public List<NaturalReserve_TupleDTO> findAllTuples() {
@@ -67,6 +87,10 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         return dtos;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see NaturalReserveService#createDTO(NaturalReserveDTO)
+     */
     @Override
     @Transactional
     public NaturalReserveDTO createDTO(NaturalReserveDTO reserveDTO) {
@@ -77,6 +101,10 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         return toDTO(naturalReserveRepository.save(reserve));
     }
 
+    /*
+     * (non-Javadoc)
+     * @see NaturalReserveService#updateDTO(NaturalReserveDTO)
+     */
     @Override
     @Transactional
     public NaturalReserveDTO updateDTO(NaturalReserveDTO reserveDTO) {
@@ -91,6 +119,10 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
         return toDTO(reserve);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see NaturalReserveService#deleteById(Long)
+     */
     @Override
     public void deleteById(Long id) {
         Assert.notNull(id, "Natural reserve ID must not be null");

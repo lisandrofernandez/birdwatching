@@ -19,16 +19,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.core;
 
+/**
+ * Assertion utility class that assists in validating arguments.
+ *
+ * @author Lisandro Fernandez
+ */
 public abstract class Assert {
 
     /**
 	 * Assert that an object is not {@code null}.
-	 * <pre class="code">Assert.notNull(clazz, "The class must not be null");</pre>
-	 * @param object the object to check
-	 * @param message the exception message to use if the assertion fails
-	 * @throws IllegalArgumentException if the object is {@code null}
+	 *
+	 * @param object   an object to check
+	 * @param message  the exception message to use if the assertion fails
+	 * @throws IllegalArgumentException if the {@code object} is {@code null}
 	 */
     public static void notNull(Object object, String message) {
         if (object == null) {

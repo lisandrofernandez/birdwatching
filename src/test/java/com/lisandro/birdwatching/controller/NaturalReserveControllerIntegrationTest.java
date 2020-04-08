@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.controller;
 
 import static com.lisandro.birdwatching.controller.NaturalReserveController.BASE_URL;
@@ -54,6 +55,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Integration tests of {@link NaturalReserveController}.
+ *
+ * @author Lisandro Fernandez
+ */
 @WebMvcTest(controllers = NaturalReserveController.class)
 public class NaturalReserveControllerIntegrationTest {
 

@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.util.ArrayList;
@@ -31,16 +32,30 @@ import com.lisandro.birdwatching.repository.BirdRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * {@link BirdService} implementation.
+ *
+ * @author Lisandro Fernandez
+ */
 @Service
 @Transactional
 public class BirdServiceImpl implements BirdService {
 
     private final BirdRepository birdRepository;
 
+    /**
+     * Constructs a {@link BirdServiceImpl}.
+     *
+     * @param birdRepository  used by the service
+     */
     public BirdServiceImpl (BirdRepository birdRepository) {
         this.birdRepository = birdRepository;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see BirdService#findAllTuples()
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Bird_TupleDTO> findAllTuples() {

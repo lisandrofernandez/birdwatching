@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.core;
 
 import java.util.Collection;
@@ -26,29 +27,67 @@ import java.util.Collection;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+/**
+ * Exception for business errors.<p>
+ *
+ * This class also provides utility static methods which acts as assertions.
+ *
+ * @author Lisandro Fernandez
+ */
 public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a {@link BusinessException}.
+     */
     public BusinessException() { }
 
+    /**
+     * Constructs a {@link BusinessException}.
+     *
+     * @param message  the message
+     */
     public BusinessException(String message) {
         super(message);
     }
 
 
+    // begin of assertion methods
+
+    /**
+     * Asserts that a collection is not {@literal null} or empty.
+     *
+     * @param collection  a collection to check
+     * @param message  the exception message to use if the assertion fails
+     * @throws BusinessException if the collection is null or empty
+     */
     public static void empty(Collection<?> collection, String message) {
         if (!CollectionUtils.isEmpty(collection)) {
             throw new BusinessException(message);
         }
     }
 
-    public static void hasLength(String text, String message) {
-        if (!StringUtils.hasLength(text)) {
+    /**
+     * Asserts that a string is not {@literal null} or empty.
+     *
+     * @param string  a string to check
+     * @param message  the exception message to use if the assertion fails
+     * @throws BusinessException if the string is null or empty
+     */
+    public static void hasLength(String string, String message) {
+        if (!StringUtils.hasLength(string)) {
             throw new BusinessException(message);
         }
     }
 
+    /**
+     * Asserts that a boolean expression is {@literal true}.
+     *
+     * @param expression  a boolean expression
+     * @param message  the exception message to use if the assertion fails
+     * @throws BusinessException if the {@code expression} is {@code false}
+     */
     public static void isTrue(boolean expression, String message) {
         if (!expression) {
             throw new BusinessException(message);
@@ -61,6 +100,13 @@ public class BusinessException extends RuntimeException {
         }
     }
 
+    /**
+     * Asserts that an object is not {@code null}.
+     *
+     * @param object   an object to check
+     * @param message  the exception message to use if the assertion fails
+     * @throws BusinessException if the {@code object} is {@code null}
+     */
     public static void notNull(Object object, String message) {
         if (object == null) {
             throw new BusinessException(message);

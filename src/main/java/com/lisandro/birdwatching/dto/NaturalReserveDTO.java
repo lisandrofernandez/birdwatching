@@ -19,11 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+/**
+ * A DTO object used as input and output in service layer classes and
+ * obviously, by its clients.
+ *
+ * @author Lisandro Fernandez
+ */
 public class NaturalReserveDTO {
     @JsonProperty(access = Access.READ_ONLY)
     private Long id;

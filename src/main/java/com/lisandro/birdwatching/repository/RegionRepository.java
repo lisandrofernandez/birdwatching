@@ -19,11 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.repository;
 
 import com.lisandro.birdwatching.model.Region;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * {@link JpaRepository} for {@link Region} entity.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface RegionRepository extends JpaRepository<Region, Long> {
 }

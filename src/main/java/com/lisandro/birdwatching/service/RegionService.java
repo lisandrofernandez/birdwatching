@@ -19,12 +19,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.util.List;
 
 import com.lisandro.birdwatching.dto.RegionDTO;
 
+/**
+ * Service interface which defines operations over regions.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface RegionService {
+
+    /**
+     * Returns all regions data.
+     *
+     * @return of all regions data
+     */
     List<RegionDTO> findAllDTO();
 }

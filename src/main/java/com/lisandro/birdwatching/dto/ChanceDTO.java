@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.dto;
 
 import java.time.Month;
@@ -28,6 +29,12 @@ import java.util.List;
 import com.lisandro.birdwatching.model.BirdSize;
 import com.lisandro.birdwatching.model.Color;
 
+/**
+ * A DTO object used as input and output in service layer classes and
+ * obviously, by its clients.
+ *
+ * @author Lisandro Fernandez
+ */
 public class ChanceDTO {
     private Month month;
     private BirdDTO bird;

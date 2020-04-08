@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching;
 
 import java.sql.SQLException;
@@ -27,9 +28,17 @@ import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration for the birdwatching application.
+ *
+ * @author Lisandro Fernandez
+ */
 @Configuration
 public class BirdwatchingApplicationConfig {
 
+    /**
+     * Creates an H2 database server mode connection.
+     */
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server inMemoryH2DatabaseServer() throws SQLException {
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9090");

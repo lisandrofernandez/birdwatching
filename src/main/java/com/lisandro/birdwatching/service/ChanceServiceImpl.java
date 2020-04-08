@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.time.Month;
@@ -35,16 +36,30 @@ import com.lisandro.birdwatching.repository.ChanceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * {@link ChanceService} implementation.
+ *
+ * @author Lisandro Fernandez
+ */
 @Service
 @Transactional
 public class ChanceServiceImpl implements ChanceService {
 
     private final ChanceRepository chanceRepository;
 
+    /**
+     * Constructs a {@link ChanceServiceImpl}.
+     *
+     * @param chanceRepository  used by the service.
+     */
     public ChanceServiceImpl (ChanceRepository chanceRepository) {
         this.chanceRepository = chanceRepository;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see ChanceService#findByMonthDTO(Long)
+     */
     @Override
     @Transactional(readOnly = true)
     public List<ChanceDTO> findByMonthDTO(Month month) {

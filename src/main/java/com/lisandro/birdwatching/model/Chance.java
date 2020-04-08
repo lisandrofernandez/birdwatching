@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
 import java.time.Month;
@@ -33,6 +34,15 @@ import javax.persistence.Table;
 
 import com.lisandro.birdwatching.core.BaseEntity;
 
+/**
+ * An entity class which represents a chance.<p>
+ *
+ * A chance indicates the probability to watch a bird in a natural reserve.<p>
+ *
+ * This class extends from {@link BaseEntity}.
+ *
+ * @author Lisandro Fernandez
+ */
 @Entity
 @Table(name = "chance")
 public class Chance extends BaseEntity {

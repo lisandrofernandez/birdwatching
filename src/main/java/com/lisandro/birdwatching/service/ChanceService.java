@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.time.Month;
@@ -26,8 +27,20 @@ import java.util.List;
 
 import com.lisandro.birdwatching.dto.ChanceDTO;
 
+/**
+ * Service interface which defines operations over chances.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface ChanceService {
     static final double MIN_PROBABILITY = .15;
 
+    /**
+     * Returns all birds that can be seen in a natural reserve in a given month,
+     * with a probability greater or equal to 15 %.
+     *
+     * @param month  the month of the year
+     * @return all birds can be seen in a natural reserve for the given month
+     */
     List<ChanceDTO> findByMonthDTO(Month month);
 }

@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.controller;
 
 import java.util.List;
@@ -30,6 +31,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Region rest controller.
+ *
+ * @author Lisandro Fernandez
+ */
 @RestController
 @RequestMapping(RegionController.BASE_URL)
 public class RegionController {
@@ -38,10 +44,20 @@ public class RegionController {
 
     private final RegionService regionService;
 
+    /**
+     * Constructs a {@link RegionController}.
+     *
+     * @param regionService  used by the controller
+     */
     public RegionController (RegionService regionService) {
         this.regionService = regionService;
     }
 
+    /**
+     * Returns all regions data, requested by an HTTP GET request.
+     *
+     * @return of all regions data
+     */
     @GetMapping
     public List<RegionDTO> all() {
         return regionService.findAllDTO();

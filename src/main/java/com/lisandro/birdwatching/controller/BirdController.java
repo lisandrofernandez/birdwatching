@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.controller;
 
 import java.util.List;
@@ -30,6 +31,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Bird rest controller.
+ *
+ * @author Lisandro Fernandez
+ */
 @RestController
 @RequestMapping(BirdController.BASE_URL)
 public class BirdController {
@@ -38,10 +44,20 @@ public class BirdController {
 
     private final BirdService birdService;
 
+    /**
+     * Constructs a {@link BirdController}.
+     *
+     * @param birdService  used by the controller
+     */
     public BirdController (BirdService birdService) {
         this.birdService = birdService;
     }
 
+    /**
+     * Returns of all birds data, requested by an HTTP GET request.
+     *
+     * @return all birds data
+     */
     @GetMapping
     public List<Bird_TupleDTO> allTuples() {
         return birdService.findAllTuples();

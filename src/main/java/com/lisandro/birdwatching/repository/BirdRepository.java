@@ -19,11 +19,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.repository;
 
 import com.lisandro.birdwatching.model.Bird;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * {@link JpaRepository} for {@link Bird} entity.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface BirdRepository extends JpaRepository<Bird, Long> {
 }

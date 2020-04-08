@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
 import java.util.ArrayList;
@@ -36,6 +37,13 @@ import javax.persistence.Table;
 import com.lisandro.birdwatching.core.BaseEntity;
 import com.lisandro.birdwatching.core.BusinessException;
 
+/**
+ * An entity class which represents a natural reserve.<p>
+ *
+ * This class extends from {@link BaseEntity}.
+ *
+ * @author Lisandro Fernandez
+ */
 @Entity
 @Table(name = "natural_reserve")
 public class NaturalReserve extends BaseEntity {

@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.controller;
 
 import java.time.LocalDate;
@@ -33,6 +34,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Chance rest controller.
+ *
+ * @author Lisandro Fernandez
+ */
 @RestController
 @RequestMapping(ChanceController.BASE_URL)
 public class ChanceController {
@@ -41,10 +47,25 @@ public class ChanceController {
 
     private final ChanceService chanceService;
 
+    /**
+     * Constructs a {@link ChanceController}.
+     *
+     * @param chanceService  used by the controller
+     */
     public ChanceController (ChanceService chanceService) {
         this.chanceService = chanceService;
     }
 
+    /**
+     * Returns a all birds that can be seen in a natural reserve in a given
+     * month, requested by an HTTP GET request.<p>
+     *
+     * The method accepts a date but only the month is used.
+     *
+     * @param date  date of the year, only month is used
+     * @return all birds that can be seen in a natural reserve for the given
+     *         month
+     */
     @GetMapping
     public List<ChanceDTO> findByMonth(
             @RequestParam(name = "date", required = true)

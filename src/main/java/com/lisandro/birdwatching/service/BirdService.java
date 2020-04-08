@@ -19,12 +19,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.util.List;
 
 import com.lisandro.birdwatching.dto.Bird_TupleDTO;
 
+/**
+ * Service interface which defines operations over birds.
+ *
+ * @author Lisandro Fernandez
+ */
 public interface BirdService {
+
+    /**
+     * Returns of all birds data.
+     *
+     * @return all birds data
+     */
     List<Bird_TupleDTO> findAllTuples();
 }

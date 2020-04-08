@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
 import java.util.ArrayList;
@@ -31,16 +32,30 @@ import com.lisandro.birdwatching.repository.RegionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * {@link RegionService} implementation.
+ *
+ * @author Lisandro Fernandez
+ */
 @Service
 @Transactional
 public class RegionServiceImpl implements RegionService {
 
     private RegionRepository regionRepository;
 
+    /**
+     * Constructs a {@link RegionServiceImpl}.
+     *
+     * @param regionRepository  used by the service
+     */
     public RegionServiceImpl(RegionRepository regionRepository) {
         this.regionRepository = regionRepository;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see RegionService#findAllDTO(Long)
+     */
     @Override
     @Transactional(readOnly = true)
     public List<RegionDTO> findAllDTO() {

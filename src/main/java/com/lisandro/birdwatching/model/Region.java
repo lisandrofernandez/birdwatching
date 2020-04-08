@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
 import javax.persistence.Column;
@@ -27,6 +28,12 @@ import javax.persistence.Table;
 
 import com.lisandro.birdwatching.core.BaseEntity;
 
+/**
+ * An entity class which represents a region.<p>
+ *
+ * This class extends from {@link BaseEntity}.
+ * @author Lisandro Fernandez
+ */
 @Entity
 @Table(name = "region")
 public class Region extends BaseEntity {

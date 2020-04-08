@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.core;
 
 import java.util.ArrayList;
@@ -27,12 +28,25 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * Error for rest controllers.
+ *
+ * @author Lisandro Fernandez
+ */
 public class ApiError {
-
     private HttpStatus status;
     private String message;
     private List<String> errors;
 
+    /**
+     * Constructs an {@link ApiError}.
+     *
+     * @param  status   the HTTP status
+     * @param  message  the error message
+     * @param  errors   the array of errors
+     * @throws IllegalArgumentException if {@code status} is {@literal null}
+     * @throws IllegalArgumentException if {@code error} is {@literal null}
+     */
     public ApiError(HttpStatus status, String message, String... errors) {
         Assert.notNull(status, "HTTP status must not be null");
         Assert.notNull(errors, "Error list must not be null");
@@ -42,16 +56,30 @@ public class ApiError {
         this.errors = new ArrayList<>(Arrays.asList(errors));
     }
 
+    /**
+     * Return the HTTP status of this {@link ApiError}.
+     *
+     * @return the HTTP status of this ApiError
+     */
     public HttpStatus getStatus() {
         return status;
     }
 
+    /**
+     * Return the message of this {@link ApiError}.
+     *
+     * @return the message of this ApiError
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Return a mutable error {@link List} of this {@link ApiError}.
+     *
+     * @return a mutable error list of this ApiError
+     */
     public List<String> getErrors() {
         return errors;
     }
-
 }

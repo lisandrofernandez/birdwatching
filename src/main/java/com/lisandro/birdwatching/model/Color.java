@@ -19,8 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
+/**
+ * Enum which represents colors.
+ *
+ * @author Lisandro Fernandez
+ */
 public enum Color {
     BLACK,
     BLUE,

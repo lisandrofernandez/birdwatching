@@ -19,8 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.model;
 
+/**
+ * Enum which represents bird sizes.
+ *
+ * @author Lisandro Fernandez
+ */
 public enum BirdSize {
     SMALL,
     MEDIUM,

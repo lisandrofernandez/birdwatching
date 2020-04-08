@@ -19,13 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package com.lisandro.birdwatching.service;
 
+/**
+ * Exception to be thrown when looking for a natural reserve that does not
+ * exists.
+ *
+ * @author Lisandro Fernandez
+ */
 public class NaturalReserveNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Construct a {@link NaturalReserveNotFoundException}.
+     */
     public NaturalReserveNotFoundException() { }
 
+    /**
+     * Construct a {@link NaturalReserveNotFoundException}.
+     *
+     * @param message  the message
+     */
     public NaturalReserveNotFoundException(String message) {
         super(message);
     }
