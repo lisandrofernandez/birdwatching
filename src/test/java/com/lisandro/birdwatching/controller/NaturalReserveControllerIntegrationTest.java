@@ -271,7 +271,7 @@ public class NaturalReserveControllerIntegrationTest {
     }
 
 
-    private class NaturalReserveDTOMatcher implements ArgumentMatcher<NaturalReserveDTO> {
+    private static class NaturalReserveDTOMatcher implements ArgumentMatcher<NaturalReserveDTO> {
         private final NaturalReserveDTO expected;
 
         public NaturalReserveDTOMatcher(NaturalReserveDTO expected) {
