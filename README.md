@@ -182,3 +182,5 @@ files are:
 ## Copyright
 
 Copyright &copy; 2020 [Lisandro Fernandez](https://github.com/lisandrofernandez).
+See [LICENSE](https://github.com/lisandrofernandez/birdwatching/blob/master/LICENSE.md)
+for details.
