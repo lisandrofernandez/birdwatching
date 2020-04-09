@@ -45,7 +45,7 @@ $ mvn clean spring-boot:run
 ```java
 @Entity
 @Table(name = "bird")
-public class Bird extends BaseEntity {
+public abstract class Bird extends BaseEntity {
     @Column(name = "name")
     private String name;
 
@@ -66,8 +66,8 @@ public class Bird extends BaseEntity {
 ```
 
 * `BirdSize` is an `enum`.
-* `Color` is an `enum`. Plumage colors are represented as a list of it. The
-  number restriction (four) should by implemented by code validation.
+* `Color` is an `enum`. Plumage colors are represented as a list of them. The
+  restriction number (four) should by implemented by code validation.
 
 ### NaturalReserve
 
@@ -93,7 +93,7 @@ public class NaturalReserve extends BaseEntity {
 ```
 
 * `Region` is an entity itself with `id` and `name`, so in order to create or
-  update a `NaturalReserve` entity a `Region.id` must be provided.
+  update a `NaturalReserve` entity a `Region#id` must be provided.
 
 ### Chance
 
