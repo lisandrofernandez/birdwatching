@@ -42,5 +42,5 @@ public interface ChanceService {
      * @param month  the month of the year
      * @return all birds can be seen in a natural reserve for the given month
      */
-    List<ChanceDTO> findByMonthDTO(Month month);
+    List<ChanceDTO> findByMonth(Month month);
 }

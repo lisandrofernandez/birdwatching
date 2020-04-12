@@ -90,7 +90,7 @@ public class NaturalReserveController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        NaturalReserveDTO reserveDTO = reserveService.findByIdDTO(id);
+        NaturalReserveDTO reserveDTO = reserveService.findById(id);
         if (reserveDTO == null) {
             ApiError apiError = new ApiError(
                     HttpStatus.NOT_FOUND,
@@ -113,7 +113,7 @@ public class NaturalReserveController {
     public ResponseEntity<?> create(@RequestBody NaturalReserveDTO reserveDTO) {
         ApiError apiError = null;
         try {
-            reserveDTO = reserveService.createDTO(reserveDTO);
+            reserveDTO = reserveService.create(reserveDTO);
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (Exception e) {
@@ -146,7 +146,7 @@ public class NaturalReserveController {
         reserveDTO.setId(id); // use ID in URL
         ApiError apiError = null;
         try {
-            reserveDTO = reserveService.updateDTO(reserveDTO);
+            reserveDTO = reserveService.update(reserveDTO);
         } catch(NaturalReserveNotFoundException e) {
             apiError = new ApiError(
                     HttpStatus.NOT_FOUND,

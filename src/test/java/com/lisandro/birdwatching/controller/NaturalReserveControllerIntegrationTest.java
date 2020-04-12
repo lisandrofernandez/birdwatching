@@ -110,7 +110,7 @@ public class NaturalReserveControllerIntegrationTest {
         naturalReserveDTO.setId(id);
         naturalReserveDTO.setName("A Natural Reserve");
         naturalReserveDTO.setRegionId(2L);
-        given(reserveService.findByIdDTO(id)).willReturn(naturalReserveDTO);
+        given(reserveService.findById(id)).willReturn(naturalReserveDTO);
 
         // when
         mockMvc.perform(get("{baseUrl}/{id}", BASE_URL, id).accept(MediaType.APPLICATION_JSON))
@@ -143,7 +143,7 @@ public class NaturalReserveControllerIntegrationTest {
         createdDTO.setId(id);
         createdDTO.setName(name);
         createdDTO.setRegionId(regionId);
-        given(reserveService.createDTO(argThat(new NaturalReserveDTOMatcher(newDTO))))
+        given(reserveService.create(argThat(new NaturalReserveDTOMatcher(newDTO))))
             .willReturn(createdDTO);
 
         // when
@@ -161,7 +161,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void createNaturalReserveWhenServiceThrowsABusinessExceptionTest() throws Exception {
         // given
-        given(reserveService.createDTO(any())).willThrow(new BusinessException("Exception test"));
+        given(reserveService.create(any())).willThrow(new BusinessException("Exception test"));
 
         // when
         mockMvc.perform(post("{baseUrl}", BASE_URL).contentType(MediaType.APPLICATION_JSON)
@@ -174,7 +174,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void createNaturalReserveWhenServiceThrowsAnotherExceptionTest() throws Exception {
         // given
-        given(reserveService.createDTO(any())).willThrow(new RuntimeException("Exception test"));
+        given(reserveService.create(any())).willThrow(new RuntimeException("Exception test"));
 
         // when
         mockMvc.perform(post("{baseUrl}", BASE_URL).contentType(MediaType.APPLICATION_JSON)
@@ -194,7 +194,7 @@ public class NaturalReserveControllerIntegrationTest {
         updateDTO.setId(id);
         updateDTO.setName(name);
         updateDTO.setRegionId(regionLong);
-        given(reserveService.updateDTO(argThat(new NaturalReserveDTOMatcher(updateDTO))))
+        given(reserveService.update(argThat(new NaturalReserveDTOMatcher(updateDTO))))
             .willReturn(updateDTO);
 
         // when
@@ -212,7 +212,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void updateNonExistingNaturalReserveTest() throws Exception {
         // given
-        given(reserveService.updateDTO(any()))
+        given(reserveService.update(any()))
             .willThrow(new NaturalReserveNotFoundException("Exception test"));
 
         // when
@@ -226,7 +226,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void updateNaturalReserveWhenServiceThrowsABusinessExceptionTest() throws Exception {
         // given
-        given(reserveService.updateDTO(any())).willThrow(new BusinessException("Exception test"));
+        given(reserveService.update(any())).willThrow(new BusinessException("Exception test"));
 
         // when
         mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)
@@ -239,7 +239,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void updateNaturalReserveWhenServiceThrowsAnotherExceptionTest() throws Exception {
         // given
-        given(reserveService.updateDTO(any())).willThrow(new RuntimeException("Exception test"));
+        given(reserveService.update(any())).willThrow(new RuntimeException("Exception test"));
 
         // when
         mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)

@@ -59,7 +59,7 @@ public class RegionControllerIntegrationTest {
     @Test
     void getAllWhenElements() throws Exception {
         // given
-        given(regionService.findAllDTO()).willReturn(
+        given(regionService.findAll()).willReturn(
                 Arrays.asList(new RegionDTO(1L, "Region #1"), new RegionDTO(2L, "Region #2"))
         );
 
@@ -75,7 +75,7 @@ public class RegionControllerIntegrationTest {
     @Test
     void getAllWhenNoElements() throws Exception {
         // given
-        given(regionService.findAllDTO()).willReturn(Collections.emptyList());
+        given(regionService.findAll()).willReturn(Collections.emptyList());
 
         // when
         mockMvc.perform(get("{baseUrl}", BASE_URL).accept(MediaType.APPLICATION_JSON))

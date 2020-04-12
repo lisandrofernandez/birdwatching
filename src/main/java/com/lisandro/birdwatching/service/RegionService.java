@@ -38,5 +38,5 @@ public interface RegionService {
      *
      * @return of all regions data
      */
-    List<RegionDTO> findAllDTO();
+    List<RegionDTO> findAll();
 }

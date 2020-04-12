@@ -41,7 +41,7 @@ public interface NaturalReserveService {
      * @return the natural reserve data, or {@literal null} if not found
      * @throws IllegalArgumentException if the id is {@literal null}
      */
-    NaturalReserveDTO findByIdDTO(Long id);
+    NaturalReserveDTO findById(Long id);
 
     /**
      * Returns of all natural reserves data.
@@ -62,7 +62,7 @@ public interface NaturalReserveService {
      * @throws com.lisandro.birdwatching.core.BusinessException if the region
      *         does not exist
      */
-    NaturalReserveDTO createDTO(NaturalReserveDTO reserveDTO);
+    NaturalReserveDTO create(NaturalReserveDTO reserveDTO);
 
     /**
      * Updates a natural reserve
@@ -76,7 +76,7 @@ public interface NaturalReserveService {
      * @throws com.lisandro.birdwatching.core.BusinessException if the region
      *         does not exist
      */
-    NaturalReserveDTO updateDTO(NaturalReserveDTO reserveDTO);
+    NaturalReserveDTO update(NaturalReserveDTO reserveDTO);
 
     /**
      * Deletes a natural reserve

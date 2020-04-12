@@ -71,7 +71,7 @@ public class ChanceController {
             @RequestParam(name = "date", required = true)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate date) {
-        return chanceService.findByMonthDTO(date.getMonth());
+        return chanceService.findByMonth(date.getMonth());
     }
 
 }

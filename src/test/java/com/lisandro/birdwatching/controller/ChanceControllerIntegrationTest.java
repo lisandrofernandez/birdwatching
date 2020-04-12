@@ -64,7 +64,7 @@ public class ChanceControllerIntegrationTest {
     @Test
     void getChancesByMonthWhenElements() throws Exception {
         // given
-        given(chanceService.findByMonthDTO(Month.JANUARY)).willReturn(getChances());
+        given(chanceService.findByMonth(Month.JANUARY)).willReturn(getChances());
 
         // when
         mockMvc.perform(get("{baseUrl}/?date=2000-01-01", BASE_URL)
@@ -100,7 +100,7 @@ public class ChanceControllerIntegrationTest {
     @Test
     void getChancesByMonthWhenNoElements() throws Exception {
         // given
-        given(chanceService.findByMonthDTO(any())).willReturn(Collections.emptyList());
+        given(chanceService.findByMonth(any())).willReturn(Collections.emptyList());
 
         // when
         mockMvc.perform(get("{baseUrl}/?date=2000-01-01", BASE_URL)

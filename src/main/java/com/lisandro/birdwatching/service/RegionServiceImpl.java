@@ -54,11 +54,11 @@ public class RegionServiceImpl implements RegionService {
 
     /*
      * (non-Javadoc)
-     * @see RegionService#findAllDTO(Long)
+     * @see RegionService#findAll(Long)
      */
     @Override
     @Transactional(readOnly = true)
-    public List<RegionDTO> findAllDTO() {
+    public List<RegionDTO> findAll() {
         List<Region> regions = regionRepository.findAll();
         List<RegionDTO> regionDTOs = new ArrayList<>(regions.size());
         for (Region region : regions) {

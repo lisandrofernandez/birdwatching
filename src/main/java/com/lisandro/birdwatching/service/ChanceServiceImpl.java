@@ -58,11 +58,11 @@ public class ChanceServiceImpl implements ChanceService {
 
     /*
      * (non-Javadoc)
-     * @see ChanceService#findByMonthDTO(Long)
+     * @see ChanceService#findByMonth(Long)
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ChanceDTO> findByMonthDTO(Month month) {
+    public List<ChanceDTO> findByMonth(Month month) {
         Assert.notNull(month, "Month must not be null");
         List<Chance> chances = chanceRepository.findByMonthAndProbabilityGreaterThanEqual(
                 month, ChanceService.MIN_PROBABILITY);

@@ -60,7 +60,7 @@ public class RegionController {
      */
     @GetMapping
     public List<RegionDTO> all() {
-        return regionService.findAllDTO();
+        return regionService.findAll();
     }
 
 }

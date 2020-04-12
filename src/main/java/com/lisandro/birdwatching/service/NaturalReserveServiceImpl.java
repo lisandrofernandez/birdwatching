@@ -63,11 +63,11 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
 
     /*
      * (non-Javadoc)
-     * @see NaturalReserveService#findByIdDTO(Long)
+     * @see NaturalReserveService#findById(Long)
      */
     @Override
     @Transactional(readOnly = true)
-    public NaturalReserveDTO findByIdDTO(Long id) {
+    public NaturalReserveDTO findById(Long id) {
         Assert.notNull(id, "Natural reserve ID must not be null");
         return naturalReserveRepository.findById(id).map(this::toDTO).orElse(null);
     }
@@ -89,11 +89,11 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
 
     /*
      * (non-Javadoc)
-     * @see NaturalReserveService#createDTO(NaturalReserveDTO)
+     * @see NaturalReserveService#create(NaturalReserveDTO)
      */
     @Override
     @Transactional
-    public NaturalReserveDTO createDTO(NaturalReserveDTO reserveDTO) {
+    public NaturalReserveDTO create(NaturalReserveDTO reserveDTO) {
         Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
         reserveDTO.setId(null); // omit ID to avoid an unwanted update
         NaturalReserve reserve = fromDTO(reserveDTO);
@@ -103,11 +103,11 @@ public class NaturalReserveServiceImpl implements NaturalReserveService {
 
     /*
      * (non-Javadoc)
-     * @see NaturalReserveService#updateDTO(NaturalReserveDTO)
+     * @see NaturalReserveService#update(NaturalReserveDTO)
      */
     @Override
     @Transactional
-    public NaturalReserveDTO updateDTO(NaturalReserveDTO reserveDTO) {
+    public NaturalReserveDTO update(NaturalReserveDTO reserveDTO) {
         Assert.notNull(reserveDTO, "NaturalReserveDTO must not be null");
         Long id = reserveDTO.getId();
         BusinessException.notNull(id, "Natural reserve ID must not be null");
