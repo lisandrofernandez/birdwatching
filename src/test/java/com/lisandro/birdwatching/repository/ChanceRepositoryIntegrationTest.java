@@ -45,9 +45,11 @@ class ChanceRepositoryIntegrationTest {
 
     @Test
     void findByMonthAndProbabilityGreaterThanEqualTest() {
-        // when
+        // given
         Month month = Month.JUNE;
         long probability = 0;
+
+        // when
         List<Chance> chances = chanceRepository.findByMonthAndProbabilityGreaterThanEqual(month, probability);
 
         // then
