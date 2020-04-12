@@ -264,7 +264,7 @@ public class NaturalReserveControllerIntegrationTest {
             .deleteById(id);
 
         // when
-        mockMvc.perform(delete("{baseUrl}/{id}", BASE_URL, 1L).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("{baseUrl}/{id}", BASE_URL, id).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));
