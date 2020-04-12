@@ -252,7 +252,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void deleteExistingNaturalReserve() throws Exception {
         // when
-        mockMvc.perform(delete("{baseUrl}/{id}", BASE_URL, 1L).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("{baseUrl}/1", BASE_URL).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent()); // then
     }
 
