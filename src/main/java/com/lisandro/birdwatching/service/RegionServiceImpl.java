@@ -41,7 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class RegionServiceImpl implements RegionService {
 
-    private RegionRepository regionRepository;
+    private final RegionRepository regionRepository;
 
     /**
      * Constructs a {@link RegionServiceImpl}.
