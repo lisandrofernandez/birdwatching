@@ -34,9 +34,9 @@ import org.springframework.http.HttpStatus;
  * @author Lisandro Fernandez
  */
 public class ApiError {
-    private HttpStatus status;
-    private String message;
-    private List<String> errors;
+    private final HttpStatus status;
+    private final String message;
+    private final List<String> errors;
 
     /**
      * Constructs an {@link ApiError}.
