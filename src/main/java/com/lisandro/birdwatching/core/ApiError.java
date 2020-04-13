@@ -57,7 +57,7 @@ public class ApiError {
     }
 
     /**
-     * Return the HTTP status of this {@link ApiError}.
+     * Returns the HTTP status of this {@link ApiError}.
      *
      * @return the HTTP status of this ApiError
      */
@@ -66,7 +66,7 @@ public class ApiError {
     }
 
     /**
-     * Return the message of this {@link ApiError}.
+     * Returns the message of this {@link ApiError}.
      *
      * @return the message of this ApiError
      */
@@ -75,7 +75,7 @@ public class ApiError {
     }
 
     /**
-     * Return a mutable error {@link List} of this {@link ApiError}.
+     * Returns a mutable error {@link List} of this {@link ApiError}.
      *
      * @return a mutable error list of this ApiError
      */
