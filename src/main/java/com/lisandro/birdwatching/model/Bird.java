@@ -90,4 +90,36 @@ public class Bird extends BaseEntity {
         return colors;
     }
 
+
+    // fluent API
+
+    public Bird id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public Bird name(String name) {
+        setName(name);
+        return this;
+    }
+
+    public Bird size(BirdSize size) {
+        setSize(size);
+        return this;
+    }
+
+    public Bird photoURL(String photoURL) {
+        setPhotoURL(photoURL);
+        return this;
+    }
+
+    public Bird addColor(Color color) {
+        colors.add(color);
+        return this;
+    }
+
+    public Bird removeColor(Color color) {
+        colors.remove(color);
+        return this;
+    }
 }
