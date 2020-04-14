@@ -49,4 +49,16 @@ public class Region extends BaseEntity {
         this.name = name;
     }
 
+
+    // fluent API
+
+    public Region id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public Region name(String name) {
+        setName(name);
+        return this;
+    }
 }
