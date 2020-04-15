@@ -89,4 +89,21 @@ public class NaturalReserve extends BaseEntity {
         BusinessException.notNull(region, "Region reserve must not be null");
     }
 
+
+    // fluent API
+
+    public NaturalReserve id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public NaturalReserve name(String name) {
+        setName(name);
+        return this;
+    }
+
+    public NaturalReserve region(Region region) {
+        setRegion(region);
+        return this;
+    }
 }
