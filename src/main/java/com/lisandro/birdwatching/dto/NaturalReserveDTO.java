@@ -60,4 +60,22 @@ public class NaturalReserveDTO {
     public void setRegionId(Long regionId) {
         this.regionId = regionId;
     }
+
+
+    // fluent API
+
+    public NaturalReserveDTO id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public NaturalReserveDTO name(String name) {
+        setName(name);
+        return this;
+    }
+
+    public NaturalReserveDTO regionId(Long regionId) {
+        setRegionId(regionId);
+        return this;
+    }
 }
