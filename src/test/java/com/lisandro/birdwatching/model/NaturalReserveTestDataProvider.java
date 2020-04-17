@@ -27,24 +27,36 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Object mother of {@link Region}
+ * Object mother of {@link NaturalReserve}.
  *
  * @author Lisandro Fernandez
  */
-public class RegionTestDataProvider {
-    private RegionTestDataProvider() {
+public class NaturalReserveTestDataProvider {
+    private NaturalReserveTestDataProvider() {
         // private constructor
     }
 
-    public static Region createARegion() {
-        return new Region().id(1L).name("A Region");
+    public static NaturalReserve createANaturalReserve() {
+        return new NaturalReserve()
+                   .id(1L)
+                   .name("A Natural Reserve")
+                   .region(RegionTestDataProvider.createARegion());
     }
 
-    public static List<Region> createAListOfRegions() {
+    public static List<NaturalReserve> createAListOfNaturalReserves() {
         return new ArrayList<>(Arrays.asList(
-                new Region().id(1L).name("Region One"),
-                new Region().id(2L).name("Region Two"),
-                new Region().id(3L).name("Region Three")
+                new NaturalReserve()
+                    .id(1L)
+                    .name("Natural Reserve One")
+                    .region(new Region().id(1L).name("Region One")),
+                new NaturalReserve()
+                    .id(2L)
+                    .name("Natural Reserve Two")
+                    .region(new Region().id(2L).name("Region Two")),
+                new NaturalReserve()
+                    .id(3L)
+                    .name("Natural Reserve Three")
+                    .region(new Region().id(3L).name("Region Three"))
         ));
     }
 }
