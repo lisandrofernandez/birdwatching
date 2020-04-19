@@ -93,4 +93,31 @@ public class Chance extends BaseEntity {
         this.probability = probability;
     }
 
+
+    // fluent API
+
+    public Chance id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public Chance bird(Bird bird) {
+        setBird(bird);
+        return this;
+    }
+
+    public Chance reserve(NaturalReserve reserve) {
+        setReserve(reserve);
+        return this;
+    }
+
+    public Chance mont(Month month) {
+        setMonth(month);
+        return this;
+    }
+
+    public Chance probability(Double probability) {
+        setProbability(probability);
+        return this;
+    }
 }
