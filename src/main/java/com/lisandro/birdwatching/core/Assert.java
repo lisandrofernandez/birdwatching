@@ -29,6 +29,10 @@ package com.lisandro.birdwatching.core;
  */
 public abstract class Assert {
 
+    private Assert() {
+        // private constructor
+    }
+
     /**
 	 * Assert that an object is not {@code null}.
 	 *
