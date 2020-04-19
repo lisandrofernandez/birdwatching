@@ -52,7 +52,6 @@ import static org.mockito.BDDMockito.given;
  * @author Lisandro Fernandez
  */
 @ExtendWith(MockitoExtension.class)
-
 class NaturalReserveServiceImplTest {
 
     @Mock
