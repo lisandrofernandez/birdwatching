@@ -27,6 +27,7 @@ import java.sql.SQLException;
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * Configuration for the birdwatching application.
@@ -34,10 +35,14 @@ import org.springframework.context.annotation.Configuration;
  * @author Lisandro Fernandez
  */
 @Configuration
+@Profile("production")
 public class BirdwatchingApplicationConfig {
 
     /**
      * Creates an H2 database server mode connection.
+     *
+     * @return H2 Server instance
+     * @throws SQLException if the server cannot be created
      */
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server inMemoryH2DatabaseServer() throws SQLException {
