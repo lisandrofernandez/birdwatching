@@ -30,7 +30,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
@@ -56,7 +55,9 @@ public class Bird extends BaseEntity {
     @Column(name = "photo_url")
     private String photoURL;
 
-    @ElementCollection(targetClass = Color.class, fetch = FetchType.EAGER)
+    // https://www.w3ma.com/persisting-set-of-enums-in-a-many-to-many-spring-data-relationship/
+    // https://stackoverflow.com/questions/416208/jpa-map-collection-of-enums
+    @ElementCollection
     @CollectionTable(name = "bird_color", joinColumns = @JoinColumn(name = "bird_id"))
     @Column(name = "color")
     @Enumerated
