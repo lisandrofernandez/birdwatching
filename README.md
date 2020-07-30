@@ -19,7 +19,7 @@ A birdwatching RESTful API.
 
 ## Requirements
 
-* JDK 1.8 or superior.
+* JDK 11 or superior.
 * Maven (optional).
 
 
