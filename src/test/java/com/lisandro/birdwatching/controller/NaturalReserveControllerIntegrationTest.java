@@ -80,7 +80,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.findAllTuples()).willReturn(tuples);
 
         // when
-        mockMvc.perform(get("{baseUrl}", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json(
@@ -96,7 +96,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.findAllTuples()).willReturn(Collections.emptyList());
 
         // when
-        mockMvc.perform(get("{baseUrl}", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json("[]", true));
@@ -113,7 +113,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.findById(id)).willReturn(naturalReserveDTO);
 
         // when
-        mockMvc.perform(get("{baseUrl}/{id}", BASE_URL, id).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL + "/{id}", id).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content()
@@ -124,7 +124,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void getNonExistingNaturalReserveTest() throws Exception {
         // when
-        mockMvc.perform(get("{baseUrl}/{id}", BASE_URL, 1L).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));
@@ -148,7 +148,7 @@ public class NaturalReserveControllerIntegrationTest {
 
         // when
         String requestBody = "{\"name\": \"A Natural Reserve\", \"regionId\": 2}";
-        mockMvc.perform(post("{baseUrl}", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody).accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isCreated()) // then
@@ -164,7 +164,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.create(any())).willThrow(new BusinessException("Exception test"));
 
         // when
-        mockMvc.perform(post("{baseUrl}", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON)
                 .content("{}").accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isBadRequest()) // then
@@ -177,7 +177,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.create(any())).willThrow(new RuntimeException("Exception test"));
 
         // when
-        mockMvc.perform(post("{baseUrl}", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON)
                 .content("{}").accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isInternalServerError()) // then
@@ -199,7 +199,7 @@ public class NaturalReserveControllerIntegrationTest {
 
         // when
         String requestBody = "{\"name\": \"A Natural Reserve Updated\", \"regionId\": 2}";
-        mockMvc.perform(put("{baseUrl}/{id}", BASE_URL, id).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", id).contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody).accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk()) // then
@@ -216,7 +216,7 @@ public class NaturalReserveControllerIntegrationTest {
             .willThrow(new NaturalReserveNotFoundException("Exception test"));
 
         // when
-        mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", 1L).contentType(MediaType.APPLICATION_JSON)
                 .content("{}").accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isNotFound()) // then
@@ -229,7 +229,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.update(any())).willThrow(new BusinessException("Exception test"));
 
         // when
-        mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", 1L).contentType(MediaType.APPLICATION_JSON)
                 .content("{}").accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isBadRequest()) // then
@@ -242,7 +242,7 @@ public class NaturalReserveControllerIntegrationTest {
         given(reserveService.update(any())).willThrow(new RuntimeException("Exception test"));
 
         // when
-        mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", 1L).contentType(MediaType.APPLICATION_JSON)
                 .content("{}").accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isInternalServerError()) // then
@@ -252,7 +252,7 @@ public class NaturalReserveControllerIntegrationTest {
     @Test
     void deleteExistingNaturalReserve() throws Exception {
         // when
-        mockMvc.perform(delete("{baseUrl}/1", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent()); // then
     }
 
@@ -264,7 +264,7 @@ public class NaturalReserveControllerIntegrationTest {
             .deleteById(id);
 
         // when
-        mockMvc.perform(delete("{baseUrl}/{id}", BASE_URL, id).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", id).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));

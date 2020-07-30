@@ -55,7 +55,7 @@ class ChanceFunctionalTest {
         String isoDate = date.toString();
 
         // when
-        mockMvc.perform(get("{baseUrl}/?date={date}", BASE_URL, isoDate).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL + "/?date={date}", isoDate).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json(

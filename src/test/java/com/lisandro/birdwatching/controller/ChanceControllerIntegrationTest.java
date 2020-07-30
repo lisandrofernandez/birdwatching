@@ -67,7 +67,7 @@ public class ChanceControllerIntegrationTest {
         given(chanceService.findByMonth(Month.JANUARY)).willReturn(getChances());
 
         // when
-        mockMvc.perform(get("{baseUrl}/?date=2000-01-01", BASE_URL)
+        mockMvc.perform(get(BASE_URL + "/?date=2000-01-01")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk()) // then
@@ -103,7 +103,7 @@ public class ChanceControllerIntegrationTest {
         given(chanceService.findByMonth(any())).willReturn(Collections.emptyList());
 
         // when
-        mockMvc.perform(get("{baseUrl}/?date=2000-01-01", BASE_URL)
+        mockMvc.perform(get(BASE_URL + "/?date=2000-01-01")
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk()) // then

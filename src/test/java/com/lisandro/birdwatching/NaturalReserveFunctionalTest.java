@@ -68,7 +68,7 @@ class NaturalReserveFunctionalTest {
     @Test
     void getExistingNaturalReserveTest() throws Exception {
         // when
-        mockMvc.perform(get("{baseUrl}/1", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json("{'id': 1, 'name': 'Monfragüe', 'regionId': 1}", true)
@@ -78,7 +78,7 @@ class NaturalReserveFunctionalTest {
     @Test
     void getNonExistingNaturalReserveShouldReturnNotFoundTest() throws Exception {
         // when
-        mockMvc.perform(get("{baseUrl}/99", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL + "/{id}", 99L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));
@@ -88,7 +88,7 @@ class NaturalReserveFunctionalTest {
     void createNaturalReserveOkTest() throws Exception {
         // when
         String requestBody = "{\"name\": \"Odiel Marshes\", \"regionId\": 1}";
-        mockMvc.perform(post("{baseUrl}", BASE_URL)
+        mockMvc.perform(post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)
                 .accept(MediaType.APPLICATION_JSON))
@@ -101,7 +101,7 @@ class NaturalReserveFunctionalTest {
     void createNaturalWhenRegionDoesNotExistShouldReturnBadRequestTest() throws Exception {
         // when
         String requestBody = "{\"name\": \"Odiel Marses\", \"regionId\": 99}";
-        mockMvc.perform(post("{baseUrl}", BASE_URL)
+        mockMvc.perform(post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)
                 .accept(MediaType.APPLICATION_JSON))
@@ -114,7 +114,7 @@ class NaturalReserveFunctionalTest {
     void updateNaturalReserveExistingTest() throws Exception {
         // when
         String requestBody = "{\"name\": \"Monfragüeee\", \"regionId\": 2}";
-        mockMvc.perform(put("{baseUrl}/1", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", 1L).contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -125,7 +125,7 @@ class NaturalReserveFunctionalTest {
     void updateNaturalReserveWhenDoNotExistsShouldReturnNotFoundTest() throws Exception {
         // when
         String requestBody = "{\"name\": \"Monfragüeee\", \"regionId\": 2}";
-        mockMvc.perform(put("{baseUrl}/99", BASE_URL).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put(BASE_URL + "/{id}", 99).contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -135,14 +135,14 @@ class NaturalReserveFunctionalTest {
     @Test
     void deleteExistingNaturalReserveTest() throws Exception {
         // when
-        mockMvc.perform(delete("{baseUrl}/1", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent()); // then
     }
 
     @Test
     void deleteNonExistingNaturalReserveShouldReturnNotFound() throws Exception {
         // when
-        mockMvc.perform(delete("{baseUrl}/99", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", 99L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));

@@ -64,7 +64,7 @@ public class RegionControllerIntegrationTest {
         );
 
         // when
-        mockMvc.perform(get("{baseUrl}", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json(
@@ -78,7 +78,7 @@ public class RegionControllerIntegrationTest {
         given(regionService.findAll()).willReturn(Collections.emptyList());
 
         // when
-        mockMvc.perform(get("{baseUrl}", BASE_URL).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(BASE_URL).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().json("[]"));
