@@ -116,7 +116,7 @@ public class NaturalReserveController {
             reserveDTO = reserveService.create(reserveDTO);
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("Unable to create a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
@@ -155,7 +155,7 @@ public class NaturalReserveController {
             );
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("Unable to update a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
@@ -186,7 +186,7 @@ public class NaturalReserveController {
                     "Natural reserve not found",
                     "There is no natural reserve with ID = " + id
             );
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("Unable to delete a natural reserve", e);
             apiError = new ApiError(
                     HttpStatus.INTERNAL_SERVER_ERROR,
