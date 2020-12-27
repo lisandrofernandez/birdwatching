@@ -23,6 +23,7 @@
 package com.lisandro.birdwatching.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
 import com.lisandro.birdwatching.dto.NaturalReserveTupleDTO;
@@ -38,10 +39,10 @@ public interface NaturalReserveService {
      * Returns a natural reserve data given its ID.
      *
      * @param id  ID of the natural reserve
-     * @return the natural reserve data, or {@literal null} if not found
-     * @throws IllegalArgumentException if the id is {@literal null}
+     * @return the natural reserve data, or {@literal Optional#empty} if not
+     *         found
      */
-    NaturalReserveDTO findById(Long id);
+    Optional<NaturalReserveDTO> findById(long id);
 
     /**
      * Returns of all natural reserves data.
@@ -53,38 +54,39 @@ public interface NaturalReserveService {
     /**
      * Creates a natural reserve, requested by an HTTP POST request.
      *
-     * @param reserveDTO  the natural reserve data
+     * @param naturalReserveDTO  the natural reserve data
      * @return the created natural reserve data
-     * @throws IllegalArgumentException if reserveDTO is {@literal null}
+     * @throws IllegalArgumentException if naturalReserveDTO is {@literal null}
      * @throws com.lisandro.birdwatching.core.BusinessException if the name
      *         is {@literal null}, empty, contains only whitespaces or is too
      *         long.
      * @throws com.lisandro.birdwatching.core.BusinessException if the region
      *         does not exist
      */
-    NaturalReserveDTO create(NaturalReserveDTO reserveDTO);
+    NaturalReserveDTO create(NaturalReserveDTO naturalReserveDTO);
 
     /**
      * Updates a natural reserve
      *
-     * @param reserveDTO  the natural reserve data to update
+     * @param naturalReserveDTO  the natural reserve data to update
      * @return the updated natural reserve data
-     * @throws IllegalArgumentException if reserveDTO is {@literal null}
+     * @throws IllegalArgumentException if naturalReserveDTO is {@literal null}
+     * @throws com.lisandro.birdwatching.core.BusinessException if the id is
+     *         {@literal null}
      * @throws com.lisandro.birdwatching.core.BusinessException if the name
      *         is {@literal null}, empty, contains only whitespaces or is too
      *         long.
      * @throws com.lisandro.birdwatching.core.BusinessException if the region
      *         does not exist
      */
-    NaturalReserveDTO update(NaturalReserveDTO reserveDTO);
+    NaturalReserveDTO update(NaturalReserveDTO naturalReserveDTO);
 
     /**
      * Deletes a natural reserve
      *
      * @param id  ID of the natural reserve
-     * @throws IllegalArgumentException if id is {@literal null}
-     * @throws NaturalReserveNotFoundException if the natural reserve does not
-     *         exist
+     * @return {@literal true} if the natural reserve existed before deleting
+     *         it, {@literal false} otherwise
      */
-    void deleteById(Long id);
+    boolean deleteById(long id);
 }

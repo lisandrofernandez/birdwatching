@@ -40,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.lisandro.birdwatching.core.BusinessException;
 import com.lisandro.birdwatching.dto.NaturalReserveDTO;
@@ -110,7 +111,7 @@ public class NaturalReserveControllerIntegrationTest {
         naturalReserveDTO.setId(id);
         naturalReserveDTO.setName("A Natural Reserve");
         naturalReserveDTO.setRegionId(2L);
-        given(reserveService.findById(id)).willReturn(naturalReserveDTO);
+        given(reserveService.findById(id)).willReturn(Optional.of(naturalReserveDTO));
 
         // when
         mockMvc.perform(get(BASE_URL + "/{id}", id).accept(MediaType.APPLICATION_JSON))
@@ -251,20 +252,19 @@ public class NaturalReserveControllerIntegrationTest {
 
     @Test
     void deleteExistingNaturalReserve() throws Exception {
+        // given
+        long id = 1L;
+        given(reserveService.deleteById(id)).willReturn(true);
+
         // when
-        mockMvc.perform(delete(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", id).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent()); // then
     }
 
     @Test
     void deleteNonExistingNaturalReserve() throws Exception {
-        // given
-        Long id = 1L;
-        willThrow(new NaturalReserveNotFoundException("Exception test")).given(reserveService)
-            .deleteById(id);
-
         // when
-        mockMvc.perform(delete(BASE_URL + "/{id}", id).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete(BASE_URL + "/{id}", 1L).accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound()) // then
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.status").value("NOT_FOUND"));

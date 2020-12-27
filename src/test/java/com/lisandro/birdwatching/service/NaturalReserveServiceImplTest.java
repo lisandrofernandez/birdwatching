@@ -32,7 +32,6 @@ import com.lisandro.birdwatching.repository.NaturalReserveRepository;
 import com.lisandro.birdwatching.repository.RegionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -70,7 +69,7 @@ class NaturalReserveServiceImplTest {
         given(naturalReserveRepository.findById(id)).willReturn(Optional.of(reserve));
 
         // when
-        NaturalReserveDTO dto = naturalReserveServiceImpl.findById(id);
+        NaturalReserveDTO dto = naturalReserveServiceImpl.findById(id).orElseThrow();
 
         // then
         then(dto.getId()).isEqualTo(id);
@@ -79,18 +78,9 @@ class NaturalReserveServiceImplTest {
     }
 
     @Test
-    void findByIdWhenNaturalReserveDoNotExistShouldBeNullTest() {
-        // when
-        NaturalReserveDTO dto = naturalReserveServiceImpl.findById(1L);
-
-        // then
-        then(dto).isNull();
-    }
-
-    @Test
-    void findByIdWhenIdIsNullShouldThrowIllegalArgumentExceptionTest() {
+    void findByIdWhenNaturalReserveDoNotExistShouldBeEmptyTest() {
         // when-then
-        assertThatIllegalArgumentException().isThrownBy(() -> naturalReserveServiceImpl.findById(null));
+        then(naturalReserveServiceImpl.findById(1L)).isEmpty();
     }
 
     @Test
@@ -167,7 +157,7 @@ class NaturalReserveServiceImplTest {
     }
 
     @Test
-    void updateOk() {
+    void updateOkTest() {
         // given
         NaturalReserveDTO updateDTO = NaturalReserveDTOTestDataProvider.createANaturalReserveDTO();
         NaturalReserve reserve = NaturalReserveTestDataProvider.createANaturalReserve().id(updateDTO.getId());
@@ -243,23 +233,13 @@ class NaturalReserveServiceImplTest {
         Long id = reserve.getId();
         given(naturalReserveRepository.findById(id)).willReturn(Optional.of(reserve));
 
-        // when
-        naturalReserveServiceImpl.deleteById(id);
-
-        // then
-        BDDMockito.then(naturalReserveRepository).should().delete(reserve);
+        // when-then
+        then(naturalReserveServiceImpl.deleteById(id)).isTrue();
     }
 
     @Test
-    void deleteByIdWhenIdIsNullShouldThrowIllegalArgumentExceptionTest() {
+    void deleteWhenNaturalReserveDoNotExistShouldReturnFalse() {
         // when-then
-        assertThatIllegalArgumentException().isThrownBy(() -> naturalReserveServiceImpl.deleteById(null));
-    }
-
-    @Test
-    void deleteWhenNaturalReserveDoNotExistShouldThrowNaturalReserveNotFoundExceptionTest() {
-        // when-then
-        assertThatExceptionOfType(NaturalReserveNotFoundException.class)
-            .isThrownBy(() -> naturalReserveServiceImpl.deleteById(1L));
+        then(naturalReserveServiceImpl.deleteById(1L)).isFalse();
     }
 }

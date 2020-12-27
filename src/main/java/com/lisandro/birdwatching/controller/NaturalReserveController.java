@@ -26,6 +26,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import com.lisandro.birdwatching.core.ApiError;
 import com.lisandro.birdwatching.core.BusinessException;
@@ -90,8 +91,8 @@ public class NaturalReserveController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        NaturalReserveDTO reserveDTO = reserveService.findById(id);
-        if (reserveDTO == null) {
+        Optional<NaturalReserveDTO> optionalNaturalReserveDTO = reserveService.findById(id);
+        if (optionalNaturalReserveDTO.isEmpty()) {
             ApiError apiError = new ApiError(
                     HttpStatus.NOT_FOUND,
                     "Natural reserve not found",
@@ -99,21 +100,21 @@ public class NaturalReserveController {
             );
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
-        return ResponseEntity.ok(reserveDTO);
+        return ResponseEntity.ok(optionalNaturalReserveDTO.get());
     }
 
     /**
      * Creates a natural reserve, requested by an HTTP POST request.
      *
-     * @param reserveDTO  the natural reserve data
+     * @param naturalReserveDTO  the natural reserve data
      * @return the created natural reserve data, or an {@link ApiError} if an
      *         error occurs
      */
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody NaturalReserveDTO reserveDTO) {
+    public ResponseEntity<?> create(@RequestBody NaturalReserveDTO naturalReserveDTO) {
         ApiError apiError = null;
         try {
-            reserveDTO = reserveService.create(reserveDTO);
+            naturalReserveDTO = reserveService.create(naturalReserveDTO);
         } catch (BusinessException e) {
             apiError = new ApiError(HttpStatus.BAD_REQUEST, "Bad Request", e.getMessage());
         } catch (RuntimeException e) {
@@ -127,26 +128,26 @@ public class NaturalReserveController {
         if (apiError != null) {
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
-        URI location = linkTo(methodOn(NaturalReserveController.class).findById(reserveDTO.getId()))
+        URI location = linkTo(methodOn(NaturalReserveController.class).findById(naturalReserveDTO.getId()))
                 .toUri();
-        return ResponseEntity.created(location).body(reserveDTO);
+        return ResponseEntity.created(location).body(naturalReserveDTO);
     }
 
     /**
      * Updates a natural reserve, requested by an HTTP PUT request.
      *
      * @param id  ID of the natural reserve
-     * @param reserveDTO  the natural reserve data to update
+     * @param naturalReserveDTO  the natural reserve data to update
      * @return the updated natural reserve data, or an {@link ApiError} if an
      *         error occurs
      */
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id,
-                                    @RequestBody NaturalReserveDTO reserveDTO) {
-        reserveDTO.setId(id); // use ID in URL
+                                    @RequestBody NaturalReserveDTO naturalReserveDTO) {
+        naturalReserveDTO.setId(id); // use ID in URL
         ApiError apiError = null;
         try {
-            reserveDTO = reserveService.update(reserveDTO);
+            naturalReserveDTO = reserveService.update(naturalReserveDTO);
         } catch(NaturalReserveNotFoundException e) {
             apiError = new ApiError(
                     HttpStatus.NOT_FOUND,
@@ -166,7 +167,7 @@ public class NaturalReserveController {
         if (apiError != null) {
             return ResponseEntity.status(apiError.getStatus()).body(apiError);
         }
-        return ResponseEntity.ok(reserveDTO);
+        return ResponseEntity.ok(naturalReserveDTO);
     }
 
     /**
@@ -179,13 +180,13 @@ public class NaturalReserveController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         ApiError apiError = null;
         try {
-            reserveService.deleteById(id);
-        } catch (NaturalReserveNotFoundException e) {
-            apiError = new ApiError(
-                    HttpStatus.NOT_FOUND,
-                    "Natural reserve not found",
-                    "There is no natural reserve with ID = " + id
-            );
+            if (!reserveService.deleteById(id)) {
+                apiError = new ApiError(
+                        HttpStatus.NOT_FOUND,
+                        "Natural reserve not found",
+                        "There is no natural reserve with ID = " + id
+                );
+            }
         } catch (RuntimeException e) {
             log.error("Unable to delete a natural reserve", e);
             apiError = new ApiError(
